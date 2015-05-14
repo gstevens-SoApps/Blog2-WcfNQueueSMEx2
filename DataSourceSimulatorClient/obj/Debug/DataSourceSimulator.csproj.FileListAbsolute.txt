@@ -1,0 +1,14 @@
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\DeviceSimulator.exe.config
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\DeviceSimulator.exe
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\DeviceSimulator.pdb
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\Microsoft.ServiceBus.dll
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\Shared.dll
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\Utilities.dll
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\Shared.pdb
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\Utilities.pdb
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\Microsoft.ServiceBus.xml
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\bin\Debug\Microsoft.WindowsAzure.Configuration.xml
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\obj\Debug\DataSourceSimulator.csprojResolveAssemblyReference.cache
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\obj\Debug\DeviceSimulator.exe
+C:\SWDev\AzureExplore\SbNetMessagingBinding\WcfNQueueNDeviceSMEx\DeviceSimulator\obj\Debug\DeviceSimulator.pdb
