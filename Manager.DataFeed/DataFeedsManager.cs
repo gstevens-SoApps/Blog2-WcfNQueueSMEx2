@@ -31,14 +31,40 @@ namespace GS.Manager.DataFeed
 
         void IDataFeeds.IngestTestData(TestMessage msg)
         {
+            DateTime msgReceivedTime = DateTime.Now;
+
             string greeting = String.Format("\n{0}.IngestTestData(): Entered.", m_ThisName);
             Console.WriteLine(greeting);
             Trace.TraceInformation("**" + greeting);
             ConsoleNTraceHelpers.DisplayTestMessage(msg);
             ConsoleNTraceHelpers.TraceTestMessage(msg);
 
-            // Below is where the code goes that does the work of this service operation.
-            // That code will be developed in subsequent iterations.
+            // The code goes that does the work of this service operation.
+            FeedProcessingMsg processingMsg =
+                            new FeedProcessingMsg
+                            {
+                                MessageReceivedDateTime = msgReceivedTime,
+                                TheMessage = msg
+                            };
+            // Call validity check engine
+
+            // if valid call Save() on DA, else log error and save bad data
+            // to the BadData table via the DA
         }
+
+        // TODO 5-17-15 George.  The NetMessagingBinding requires OneWay=true. 
+        // Move this operation into another service contract
+        // that uses a TCP binding, not NetMessagingBinding.
+        // TODO 5-17-15 George.  Implement this method.
+        //DataFeedStatistics IDataFeeds.CollectDataFeedStatistics()
+        //{
+        //    string greeting = String.Format("\n{0}.CollectFeedStatistics(): Entered.", m_ThisName);
+        //    Console.WriteLine(greeting);
+        //    Trace.TraceInformation("**" + greeting);
+        //    Console.WriteLine("Not yet implemented.");
+        //    Trace.TraceInformation("Not yet implemented.");
+        //    DataFeedStatistics stats = new DataFeedStatistics();
+        //    return stats;
+        //}
     }
 }

@@ -1,0 +1,1 @@
+C:\SWDev\Src\Dev2\Blog2-WcfNQueueSMEx2\UI.DataSourceSimulatorClient\bin\Debug\GS.UI.DataSourceSimulatorClient.exe.config

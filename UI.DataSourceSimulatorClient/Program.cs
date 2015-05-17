@@ -75,7 +75,7 @@ namespace GS.UI.DataSourceSimulatorClient
             TestMessage msg = new TestMessage
             {
                 MessageId = Guid.NewGuid(),
-                MessageDateTime = DateTime.Now,
+                MessageSendDateTime = DateTime.Now,
                 SourceMsgSeqNumber = sourceSeqNo,
                 SourceId = sourceId,
                 SourceGroupId = sourceGroupId,

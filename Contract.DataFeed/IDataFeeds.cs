@@ -24,5 +24,11 @@ namespace GS.Contract.DataFeed
     {
         [OperationContract(IsOneWay = true)]
         void IngestTestData(TestMessage dmsg);
+        
+        // TODO 5-17-15 George.  The NetMessagingBinding requires
+        // OneWay=true. Move this operation into another service contract
+        // that uses a TCP binding, not NetMessagingBinding.
+        //[OperationContract]
+        //DataFeedStatistics CollectDataFeedStatistics();
     }
 }

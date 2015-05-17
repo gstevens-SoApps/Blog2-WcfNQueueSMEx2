@@ -2,7 +2,7 @@
 using System;
 using System.Diagnostics;
 /*
-MiscHelpers.ConsoleNTraceHelpers
+Ifx.UI.ConsoleNTraceHelpers
   
 Copyright 2015 George Stevens
 
@@ -52,8 +52,8 @@ namespace GS.Ifx.UI
 
         private static string FormatSbMessageDisplay(SbMessage msg)
         {
-            return string.Format("\n  MessageId={0},\n  MessageDateTime={1}",
-                                 msg.MessageId, msg.MessageDateTime);
+            return string.Format("\n  MessageId={0},\n  MessageSendDateTime={1}",
+                                 msg.MessageId, msg.MessageSendDateTime);
         }
 
         private static string FormatTestMessageDisplay(TestMessage msg)

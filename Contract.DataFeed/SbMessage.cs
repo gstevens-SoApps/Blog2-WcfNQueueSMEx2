@@ -24,9 +24,9 @@ namespace GS.Contract.DataFeed
     public abstract class SbMessage
     {
         [DataMember]
-        public Guid MessageId;
+        public Guid MessageId { get; set; }
         [DataMember]
-        public DateTime MessageDateTime;
+        public DateTime MessageSendDateTime { get; set; }
     }
 
     [DataContract(Namespace = "GeorgeStevens/SoApps/5/15")]
