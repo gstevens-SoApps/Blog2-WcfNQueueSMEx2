@@ -17,6 +17,8 @@ limitations under the License.
 */
 
 using GS.Contract.DataFeed;
+using GS.Contract.DataFeed.Server;
+using GS.Engine.FeedValidityEngine;
 using GS.Ifx.UI;
 using ServiceModelEx;
 using System;
@@ -47,9 +49,15 @@ namespace GS.Manager.DataFeed
                                 TheMessage = msg
                             };
             // Call validity check engine
+            IFeedValidityEngine validityEngine = new FeedValidityEngine();
+            FeedProcessingMsg checkedMsg = validityEngine.CheckValidity(processingMsg);
 
-            // if valid call Save() on DA, else log error and save bad data
-            // to the BadData table via the DA
+            if (!checkedMsg.IsValid)
+            {
+                // TODO 5-17-15 George.  Report & Log Error and save msg to BadData table.
+            }
+            // TODO 5-17-15 Call IngestedDataDA.SaveTestMessage(checkedMsg);
+            
         }
 
         // TODO 5-17-15 George.  The NetMessagingBinding requires OneWay=true. 

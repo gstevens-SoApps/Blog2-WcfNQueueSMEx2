@@ -1,8 +1,9 @@
-﻿using GS.Ifx.UI;
+﻿using Explore.AzStorage.TableStorageApp;
+using GS.Ifx.UI;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 /*
-Explore.AzStorage.Program
+Explore.AzTableStorageApp.Program
   
 Copyright 2015 George Stevens
 
@@ -21,7 +22,7 @@ limitations under the License.
 using System;
 using System.Configuration;
 
-namespace Explore.AzStorage.TableStorageApp
+namespace Explore.AzTbleStorageApp
 {
     class Program
     {

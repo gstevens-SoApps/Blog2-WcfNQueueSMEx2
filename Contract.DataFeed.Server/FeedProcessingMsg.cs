@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GS.Contract.DataFeed
+namespace GS.Contract.DataFeed.Server
 {
     [DataContract(Namespace = "GeorgeStevens/SoApps/5/15")]
     public class FeedProcessingMsg

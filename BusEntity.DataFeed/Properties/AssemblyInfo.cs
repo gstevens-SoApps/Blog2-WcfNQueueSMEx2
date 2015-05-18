@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TableStorageConsoleApp")]
+[assembly: AssemblyTitle("BusEntity.DataFeed")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("TableStorageConsoleApp")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
+[assembly: AssemblyCompany("George Stevens")]
+[assembly: AssemblyProduct("BusEntity.DataFeed")]
+[assembly: AssemblyCopyright("Copyright © George Stevens 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f0485b63-9db9-4047-9ba4-f01526c7bb1f")]
+[assembly: Guid("25808971-3c88-4188-bc22-8175fefcf1f4")]
 
 // Version information for an assembly consists of the following four values:
 //

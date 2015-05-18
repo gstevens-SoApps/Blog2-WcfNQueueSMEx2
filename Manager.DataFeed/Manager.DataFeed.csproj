@@ -40,13 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataFeedsManager.cs" />
+    <Compile Include="DataFeedManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Contract.DataFeed.Server\Contract.DataFeed.Server.csproj">
+      <Project>{2d81d6bb-3fb6-46bc-9e5f-6aa21286736d}</Project>
+      <Name>Contract.DataFeed.Server</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contract.DataFeed\Contract.DataFeed.csproj">
       <Project>{c541ac0c-dcca-4ef0-9978-f976660dc246}</Project>
       <Name>Contract.DataFeed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess.DataFeed\DataAccess.DataFeed.csproj">
+      <Project>{c006bd92-006e-422d-b1b6-a9b759984781}</Project>
+      <Name>DataAccess.DataFeed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Engine.DataFeed\Engine.DataFeed.csproj">
+      <Project>{c69bbcb2-796c-471b-bbaa-8aa40f8ecfb2}</Project>
+      <Name>Engine.DataFeed</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ifx.UI\Ifx.UI.csproj">
       <Project>{ae0eff26-91b5-4866-b6cf-e77400e6784d}</Project>
