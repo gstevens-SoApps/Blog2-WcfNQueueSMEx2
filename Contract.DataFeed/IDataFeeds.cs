@@ -1,5 +1,5 @@
 ﻿/*
-Shared.IDataFeedsManager
+Contract.DataFeed.IDataFeedsManager
   
 Copyright 2015 George Stevens
 

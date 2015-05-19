@@ -44,10 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contract.DataFeed.Server\Contract.DataFeed.Server.csproj">
-      <Project>{2d81d6bb-3fb6-46bc-9e5f-6aa21286736d}</Project>
-      <Name>Contract.DataFeed.Server</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Contract.DataFeed\Contract.DataFeed.csproj">
       <Project>{c541ac0c-dcca-4ef0-9978-f976660dc246}</Project>
       <Name>Contract.DataFeed</Name>
@@ -64,6 +60,9 @@
       <Project>{ae0eff26-91b5-4866-b6cf-e77400e6784d}</Project>
       <Name>Ifx.UI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,5 @@
 ﻿/*
-DataFeedsManager.DataFeedsManager
+Manager.DataFeed.DataFeedManager
   
 Copyright 2015 George Stevens
 
@@ -17,8 +17,8 @@ limitations under the License.
 */
 
 using GS.Contract.DataFeed;
-using GS.Contract.DataFeed.Server;
-using GS.Engine.FeedValidityEngine;
+using GS.DataAccess.DataFeed;
+using GS.Engine.DataFeed;
 using GS.Ifx.UI;
 using ServiceModelEx;
 using System;
@@ -34,6 +34,7 @@ namespace GS.Manager.DataFeed
         void IDataFeeds.IngestTestData(TestMessage msg)
         {
             DateTime msgReceivedTime = DateTime.Now;
+            Debug.Assert(msg != null);
 
             string greeting = String.Format("\n{0}.IngestTestData(): Entered.", m_ThisName);
             Console.WriteLine(greeting);
@@ -41,23 +42,38 @@ namespace GS.Manager.DataFeed
             ConsoleNTraceHelpers.DisplayTestMessage(msg);
             ConsoleNTraceHelpers.TraceTestMessage(msg);
 
-            // The code goes that does the work of this service operation.
-            FeedProcessingMsg processingMsg =
-                            new FeedProcessingMsg
-                            {
-                                MessageReceivedDateTime = msgReceivedTime,
-                                TheMessage = msg
-                            };
-            // Call validity check engine
-            IFeedValidityEngine validityEngine = new FeedValidityEngine();
-            FeedProcessingMsg checkedMsg = validityEngine.CheckValidity(processingMsg);
-
-            if (!checkedMsg.IsValid)
-            {
-                // TODO 5-17-15 George.  Report & Log Error and save msg to BadData table.
-            }
-            // TODO 5-17-15 Call IngestedDataDA.SaveTestMessage(checkedMsg);
+            // The business logic.
             
+            // Validate message.
+            IFeedValidityEngine validityEngine = new FeedValidityEngine();
+            FeedProcessingMsg checkedMsg = validityEngine.CheckValidity(msg, msgReceivedTime);
+
+            // Save message.
+            IIngestedDataDA ingestedDataDA = new IngestedDataDA();
+            if (checkedMsg.IsValid)
+            {
+                ingestedDataDA.SaveTestMessage(checkedMsg);
+            }
+            else
+            {
+                Debug.Assert(checkedMsg.IsValid);
+
+                LogInvalidMessageError(checkedMsg);
+                string errMsg = "Saving invalid message to BadMessage table.";
+                Trace.TraceInformation(errMsg);
+                Console.WriteLine(errMsg);
+
+                ingestedDataDA.SaveBadMessage(checkedMsg);
+            }
+        }
+
+        private void LogInvalidMessageError(FeedProcessingMsg checkedMsg)
+        {
+            string errMsg =
+                string.Format("\n{0}.IngestTestData():  Invalid message -- ErrorMessage={1}, Received={2}",
+                                m_ThisName,checkedMsg.ErrorMessage, checkedMsg.MessageReceivedDateTime);
+            Trace.TraceError(errMsg);
+            Console.WriteLine(errMsg);
         }
 
         // TODO 5-17-15 George.  The NetMessagingBinding requires OneWay=true. 

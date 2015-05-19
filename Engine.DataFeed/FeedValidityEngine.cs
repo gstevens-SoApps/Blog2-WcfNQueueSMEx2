@@ -1,5 +1,4 @@
-﻿using GS.Contract.DataFeed;
-/*
+﻿/*
 Engine.FeedValidityEngine.cs
   
 Copyright 2015 George Stevens
@@ -18,25 +17,36 @@ limitations under the License.
 */
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GS.Contract.DataFeed.Server;
+using GS.Contract.DataFeed;
+using GS.DataAccess.DataFeed;
 
-namespace GS.Engine.FeedValidityEngine
+namespace GS.Engine.DataFeed
 {
     public class FeedValidityEngine : IFeedValidityEngine
     {
-        FeedProcessingMsg IFeedValidityEngine.CheckValidity(FeedProcessingMsg msg)
+        FeedProcessingMsg IFeedValidityEngine.CheckValidity(TestMessage msg, DateTime receivedDateTime)
         {
-            msg.IsValid = true;
-            TestMessage testMessage = msg.TheMessage as TestMessage;
-            if (testMessage != null)
+            Debug.Assert(msg != null);
+            Debug.Assert(receivedDateTime != DateTime.MinValue);
+
+            FeedProcessingMsg processingMsg =
+                 new FeedProcessingMsg
+                 {
+                     MessageReceivedDateTime = receivedDateTime,
+                     TheMessage = msg
+                 };
+            processingMsg.IsValid = true;
+            if (msg != null)
+
             {
-                if (testMessage.MsgBody.Contains("Bad Message"))
+                if (msg.MsgBody.Contains("Bad Message"))
                 {
-                    msg.IsValid = false;
-                    msg.ErrorMessage = "MessageBody contained 'Bad Message'";
+                    processingMsg.IsValid = false;
+                    processingMsg.ErrorMessage = "MessageBody contained 'Bad Message'";
                 }
 
                 // TODO 5-17-15 George.  Do other validity checks as well?
@@ -44,10 +54,10 @@ namespace GS.Engine.FeedValidityEngine
             }
             else
             {
-                msg.IsValid = false;
-                msg.ErrorMessage = "MsgBody could not be case to TestMessage.  Was null.";
+                processingMsg.IsValid = false;
+                processingMsg.ErrorMessage = "MsgBody could not be case to TestMessage.  Was null.";
             }
-            return msg;
+            return processingMsg;
         }
     }
 }
