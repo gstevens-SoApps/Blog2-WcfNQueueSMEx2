@@ -1,7 +1,4 @@
-﻿using GS.Contract.DataFeed;
-using System;
-using System.Diagnostics;
-/*
+﻿/*
 Ifx.UI.ConsoleNTraceHelpers
   
 Copyright 2015 George Stevens
@@ -18,6 +15,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
+using GS.Contract.DataFeed;
+using System;
+using System.Diagnostics;
 using System.Text;
 
 namespace GS.Ifx.UI

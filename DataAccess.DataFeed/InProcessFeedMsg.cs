@@ -1,5 +1,5 @@
 ﻿/*
-Contract.DataFeed.Server.FeedProcessingMsg
+GS.DataAccess.DataFeed.InProcessFeedMsg
   
 Copyright 2015 George Stevens
 
@@ -23,7 +23,7 @@ using System.Runtime.Serialization;
 namespace GS.DataAccess.DataFeed
 {
     [DataContract(Namespace = "GeorgeStevens/SoApps/5/15")]
-    public class FeedProcessingMsg
+    public class InProcessFeedMsg
     {
         [DataMember]
         public bool IsValid { get; set; }
@@ -32,6 +32,11 @@ namespace GS.DataAccess.DataFeed
         [DataMember]
         public DateTime MessageReceivedDateTime { get; set; }
         [DataMember]
-        public SbMessage TheMessage { get; set; }
+        // 5-20-15 George.  The GenericResolver cannot resolve this and
+        // as a result it causes exceptions in the IngestedDataDA and the
+        // FeedValidityEngine.
+        public SbMessage MessageInProcess { get; set; }
+
+        //public TestMessage MessageInProcess { get; set; }
     }
 }

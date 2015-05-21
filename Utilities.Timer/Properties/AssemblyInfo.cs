@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Utilities.Timer")]
+[assembly: AssemblyTitle("GS.Utilities.Timer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("George Stevens")]
-[assembly: AssemblyProduct("Utilities.Timer")]
+[assembly: AssemblyProduct("GS.Utilities.Timer")]
 [assembly: AssemblyCopyright("Copyright © George Stevens 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

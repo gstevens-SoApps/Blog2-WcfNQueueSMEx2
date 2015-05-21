@@ -1,5 +1,5 @@
 ﻿/*
-DataFeedsServiceHost.Program
+GS.Ifx.Host.DataFeedServiceHost
   
 Copyright 2015 George Stevens
 
@@ -26,6 +26,20 @@ namespace GS.Ifx.Host.DataFeedServiceHost
 {
     public class Program
     {
+        // The GenericResolver requires the ServiceHost to have references to assemblies containing
+        // participants in complex types that need resolution so that the resolver can build a list 
+        // of such types. Just putting an assembly containing participants in the project References
+        // is not enough.  You need a single piece of code that access a single item in each assembly 
+        // containing participants in complex types.  The code does NOT need a reference to each
+        // complex type participant type within an assembly, but rather it needs only to a 
+        // reference to any type in the assembly.  That is sufficient to ensure the GenericResolver
+        // will work properly in a non-web/non-workerrole situation. 
+        //
+        // For web and workerrole situations, the assemblies must be prefixed with "App_Code."
+        // That is all that needs to be done?
+        private static Contract.DataFeed.SbMessage sbMessage = null;
+        private static DataAccess.DataFeed.InProcessFeedMsg inProcessFeedMsg = null;
+
         private static string m_ThisName = "DataFeedServiceHost";
 
         static void Main(string[] args)
@@ -33,7 +47,7 @@ namespace GS.Ifx.Host.DataFeedServiceHost
             Console.Title = m_ThisName;
             Console.WriteLine("{0}.Main(): Entered. Awaiting your input to start the", m_ThisName);
             Console.WriteLine("  QueuedServicsBusHost for the Service Bus queue '{0}'\n  via WCF NetMessagingBinding.",
-                                ConstsNEnums.IngestionQueueName);
+                                ConstantsNEnums.IngestionQueueName);
             ConsoleNTraceHelpers.PauseTillUserPressesEnter();
             QueuedServiceBusHost host = null;
             try

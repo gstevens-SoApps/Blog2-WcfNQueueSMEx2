@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DataFeedsCloudWorker")]
+[assembly: AssemblyTitle("GS.Ifx.Host.Cloud.DataFeedWorker")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("George Stevens")]
-[assembly: AssemblyProduct("DataFeedsCloudWorker")]
+[assembly: AssemblyProduct("GS.Ifx.Host.Cloud.DataFeedWorker")]
 [assembly: AssemblyCopyright("Copyright © George Stevens 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

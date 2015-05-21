@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DataAccess.DataFeed")]
+[assembly: AssemblyTitle("GS.DataAccess.DataFeed")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("George Stevens")]
-[assembly: AssemblyProduct("DataAccess.DataFeed")]
+[assembly: AssemblyProduct("GS.DataAccess.DataFeed")]
 [assembly: AssemblyCopyright("Copyright © George Stevens 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

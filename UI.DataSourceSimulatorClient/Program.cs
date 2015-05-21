@@ -1,5 +1,5 @@
 ﻿/*
-DataSourceSimulatorClient.Program
+GS.UI.DataSourceSimulatorClient.Program
   
 Copyright 2015 George Stevens
 
@@ -15,12 +15,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
 using GS.Contract.DataFeed;
 using GS.Ifx.Common;
 using GS.Ifx.UI;
 using GS.Proxy.DataFeed;
 using System;
-
 
 namespace GS.UI.DataSourceSimulatorClient
 {
@@ -37,7 +37,7 @@ namespace GS.UI.DataSourceSimulatorClient
             Console.Title = m_ThisName;
             Console.WriteLine("{0}.Main(): Press <ENTER> to enqueue one", m_ThisName);
             Console.WriteLine("  test message to SB queue '{0}' via WCF NetMessagingBinding",
-                               ConstsNEnums.IngestionQueueName);
+                               ConstantsNEnums.IngestionQueueName);
             InitSourceIds(args);
 
             while (true)
@@ -54,7 +54,7 @@ namespace GS.UI.DataSourceSimulatorClient
                     Console.WriteLine("{0}.Main(): Enqueueing test message..", m_ThisName);
 
                     TestMessage msg = MakeTestMessage(++m_MsgSeqNumber, m_SourceId, m_SourceGroupId);
-                    IngestTestData(msg, ConstsNEnums.IngestionQueueEndpointName);
+                    IngestTestData(msg, ConstantsNEnums.IngestionQueueEndpointName);
                 }
                 catch (Exception ex)
                 {
@@ -75,7 +75,6 @@ namespace GS.UI.DataSourceSimulatorClient
             TestMessage msg = new TestMessage
             {
                 MessageId = Guid.NewGuid(),
-                MessageSendDateTime = DateTime.Now,
                 SourceMsgSeqNumber = sourceSeqNo,
                 SourceId = sourceId,
                 SourceGroupId = sourceGroupId,
@@ -86,6 +85,10 @@ namespace GS.UI.DataSourceSimulatorClient
 
         private static void IngestTestData(TestMessage msg, string queueName)
         {
+            // Allow calculation of elapsed time: From proxy instantiation 
+            // till the message is received by the instantiated service instance.
+            msg.MessageSendDateTime = DateTime.Now;
+
             // "Programming WCF Services" 3rd edition by Juval Lowy pp 259-260 recommends the
             // following form when needing to catch exceptions near the SendQueuedTestMessage(). 
             DataFeedsClient proxy = new DataFeedsClient(queueName);

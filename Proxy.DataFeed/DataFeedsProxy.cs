@@ -1,5 +1,5 @@
 ﻿/*
-Shared.DataFeedsServiceProxy
+GS.Proxy.DataFeed.DataFeedsClient
   
 Copyright 2015 George Stevens
 

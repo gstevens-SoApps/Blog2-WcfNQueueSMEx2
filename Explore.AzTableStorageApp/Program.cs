@@ -1,5 +1,5 @@
 ﻿/*
-Explore.AzTableStorageApp.Program
+ GS.Explore.AzTableStorageApp.Program
   
 Copyright 2015 George Stevens
 
@@ -15,14 +15,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-using Explore.AzTableStorageApp;
+
 using GS.Ifx.UI;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
 using System.Configuration;
 
-namespace Explore.AzTableStorageApp
+namespace GS.Explore.AzTableStorageApp
 {
     class Program
     {

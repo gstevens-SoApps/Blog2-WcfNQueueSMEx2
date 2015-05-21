@@ -1,5 +1,5 @@
 ﻿/*
-Manager.DataFeed.DataFeedManager
+GS.Manager.DataFeed.DataFeedManager
   
 Copyright 2015 George Stevens
 
@@ -36,38 +36,60 @@ namespace GS.Manager.DataFeed
             DateTime msgReceivedTime = DateTime.Now;
             Debug.Assert(msg != null);
 
+            // This is test code.
             string greeting = String.Format("\n{0}.IngestTestData(): Entered.", m_ThisName);
             Console.WriteLine(greeting);
             Trace.TraceInformation("**" + greeting);
             ConsoleNTraceHelpers.DisplayTestMessage(msg);
             ConsoleNTraceHelpers.TraceTestMessage(msg);
 
-            // The business logic.
-            
-            // Validate message.
-            IFeedValidityEngine validityEngine = new FeedValidityEngine();
-            FeedProcessingMsg checkedMsg = validityEngine.CheckValidity(msg, msgReceivedTime);
+            // Below is the business logic.
 
-            // Save message.
-            IIngestedDataDA ingestedDataDA = new IngestedDataDA();
+            // Below note the composition of microservices!  Specifially, 
+            // the Engine and DataAccessor microservices are hosted and run within
+            // this DataFeedManager microservice via the ServiceModelEx
+            // InProcFactory.  The DataFeedManager instance thus contains these 2
+            // other microservices, but only for as long as they are open!
+            // Please see "Programming WCF Services" 3rd Edition by Juval Lowy, 
+            // pp 71-74 for more information.
+            //
+            // One good reason to run the Engine and DataAccessor microservices in 
+            // process to the DataFeedManager as WCF services (i.e. hosting WCF
+            // services within this DataFeedManager) is that it  allows any WCF
+            // message headers (comming all the way from the sender of the
+            // message) to be available to all the composed microservices. This 
+            // technique is very effective in separating the concerns of system info (in the
+            // message headers) from business domain info (in the message), and can
+            // greatly reduce code clutter and increase programmer productivity and
+            // enjoyment.  Sometimes these WCF message headers are called 
+            // "out-of-band paramaters".  They can be very useful and with a little
+            // rather simple infrastructure, easy to use.
+            //
+            // However, using such message headers is far beyond the scope
+            // of this simple example.  The goal here is to introduce you to
+            // one good reason to run WCF services "in process" with another WCF service.
+            
+            InProcessFeedMsg checkedMsg = null;
+            IFeedValidityEngine validityEngProxy =
+                            InProcFactory.CreateInstance<FeedValidityEngine, IFeedValidityEngine>();
+            checkedMsg = validityEngProxy.CheckValidity(msg, msgReceivedTime);
+            InProcFactory.CloseProxy(validityEngProxy);
+            
             if (checkedMsg.IsValid)
             {
-                ingestedDataDA.SaveTestMessage(checkedMsg);
+                IIngestedDataDA ingestDataDaProxy =
+                            InProcFactory.CreateInstance<IngestedDataDA, IIngestedDataDA>();
+                ingestDataDaProxy.SaveTestMessage(checkedMsg);
+                InProcFactory.CloseProxy(ingestDataDaProxy);
             }
             else
             {
                 Debug.Assert(checkedMsg.IsValid);
-
                 LogInvalidMessageError(checkedMsg);
-                string errMsg = "Saving invalid message to BadMessage table.";
-                Trace.TraceInformation(errMsg);
-                Console.WriteLine(errMsg);
-
-                ingestedDataDA.SaveBadMessage(checkedMsg);
             }
         }
 
-        private void LogInvalidMessageError(FeedProcessingMsg checkedMsg)
+        private void LogInvalidMessageError(InProcessFeedMsg checkedMsg)
         {
             string errMsg =
                 string.Format("\n{0}.IngestTestData():  Invalid message -- ErrorMessage={1}, Received={2}",
@@ -75,20 +97,5 @@ namespace GS.Manager.DataFeed
             Trace.TraceError(errMsg);
             Console.WriteLine(errMsg);
         }
-
-        // TODO 5-17-15 George.  The NetMessagingBinding requires OneWay=true. 
-        // Move this operation into another service contract
-        // that uses a TCP binding, not NetMessagingBinding.
-        // TODO 5-17-15 George.  Implement this method.
-        //DataFeedStatistics IDataFeeds.CollectDataFeedStatistics()
-        //{
-        //    string greeting = String.Format("\n{0}.CollectFeedStatistics(): Entered.", m_ThisName);
-        //    Console.WriteLine(greeting);
-        //    Trace.TraceInformation("**" + greeting);
-        //    Console.WriteLine("Not yet implemented.");
-        //    Trace.TraceInformation("Not yet implemented.");
-        //    DataFeedStatistics stats = new DataFeedStatistics();
-        //    return stats;
-        //}
     }
 }

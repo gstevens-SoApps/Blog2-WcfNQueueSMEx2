@@ -1,5 +1,5 @@
 ﻿/*
-DataFeedsCloudWorker.WorkerRole
+GS.Ifx.Host.Cloud.DataFeedWorker.WorkerRoleWcf
   
 Copyright 2015 George Stevens
 

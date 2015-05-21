@@ -1,5 +1,5 @@
 ﻿/*
-Contract.DataFeed.SbMessage.cs
+GS.Contract.DataFeed.SbMessage
   
 Copyright 2015 George Stevens
 

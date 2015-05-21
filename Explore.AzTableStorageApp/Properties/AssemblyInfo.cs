@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Explore.AzStorage.TableStorageApp")]
+[assembly: AssemblyTitle("GS.Explore.AzTableStorageApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("George Stevens")]
-[assembly: AssemblyProduct("Explore.AzStorage.TableStorageApp")]
+[assembly: AssemblyProduct("GS.Explore.AzTableStorageApp")]
 [assembly: AssemblyCopyright("Copyright © George Stevens 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

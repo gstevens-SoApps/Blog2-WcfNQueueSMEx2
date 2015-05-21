@@ -1,5 +1,5 @@
 ﻿/*
-Contract.DataFeed.TestMessage.cs
+GS.Contract.DataFeed.TestMessage
   
 Copyright 2015 George Stevens
 

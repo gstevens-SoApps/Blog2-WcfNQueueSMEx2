@@ -1,5 +1,5 @@
 ﻿/*
-Shared.ConstsNEnums
+GS.Ifx.Common.ConstantsNEnums
   
 Copyright 2015 George Stevens
 
@@ -17,7 +17,7 @@ limitations under the License.
 */
 namespace GS.Ifx.Common
 {
-    public class ConstsNEnums
+    public class ConstantsNEnums
     {
         // Names of Service Bus items.
         public const string IngestionQueueName = "IngestionQueue";

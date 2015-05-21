@@ -1,5 +1,5 @@
 ﻿/*
-Contract.DataFeed.Server.IIngestedDataDA
+GS.DataAccess.DataFeed.IIngestedDataDA
   
 Copyright 2015 George Stevens
 
@@ -16,7 +16,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using GS.Contract.DataFeed;
 using System.ServiceModel;
 
 namespace GS.DataAccess.DataFeed
@@ -24,7 +23,7 @@ namespace GS.DataAccess.DataFeed
     [ServiceContract(Namespace = "GeorgeStevens/SoApps/5/15")]
     public interface IIngestedDataDA
     {
-        void SaveTestMessage(FeedProcessingMsg msg);
-        void SaveBadMessage(FeedProcessingMsg msg);
+        [OperationContract]
+        void SaveTestMessage(InProcessFeedMsg msg);
     }
 }

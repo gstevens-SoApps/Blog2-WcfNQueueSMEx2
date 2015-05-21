@@ -1,5 +1,5 @@
 ﻿/*
-Explore.AzTableStorageApp.OrderEntity.cs
+GS.Explore.AzTableStorageApp.OrderEntity
   
 Copyright 2015 George Stevens
 
@@ -18,7 +18,7 @@ limitations under the License.
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
 
-namespace Explore.AzTableStorageApp
+namespace GS.Explore.AzTableStorageApp
 {
     public class OrderEntity : TableEntity
     {

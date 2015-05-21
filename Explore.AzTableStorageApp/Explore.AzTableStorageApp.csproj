@@ -7,8 +7,8 @@
     <ProjectGuid>{3895E3C3-BDC1-4EF5-A329-2390BF51D088}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Explore.AzTableStorageApp</RootNamespace>
-    <AssemblyName>Explore.AzTableStorageApp</AssemblyName>
+    <RootNamespace>GS.Explore.AzTableStorageApp</RootNamespace>
+    <AssemblyName>GS.Explore.AzTableStorageApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

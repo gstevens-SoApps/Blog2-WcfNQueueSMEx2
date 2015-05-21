@@ -1,5 +1,5 @@
 ﻿/*
-Engine.FeedValidityEngine.cs
+GS.Engine.DataFeed.FeedValidityEngine
   
 Copyright 2015 George Stevens
 
@@ -15,49 +15,50 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using GS.Contract.DataFeed;
 using GS.DataAccess.DataFeed;
+using System;
+using System.Diagnostics;
+using ServiceModelEx;
 
 namespace GS.Engine.DataFeed
 {
+    [GenericResolverBehavior] 
     public class FeedValidityEngine : IFeedValidityEngine
     {
-        FeedProcessingMsg IFeedValidityEngine.CheckValidity(TestMessage msg, DateTime receivedDateTime)
+        InProcessFeedMsg IFeedValidityEngine.CheckValidity(TestMessage msg, DateTime receivedDateTime)
         {
             Debug.Assert(msg != null);
             Debug.Assert(receivedDateTime != DateTime.MinValue);
 
-            FeedProcessingMsg processingMsg =
-                 new FeedProcessingMsg
-                 {
-                     MessageReceivedDateTime = receivedDateTime,
-                     TheMessage = msg
-                 };
-            processingMsg.IsValid = true;
+            InProcessFeedMsg inProcessMsg = new InProcessFeedMsg
+                                                 {
+                                                     MessageReceivedDateTime = receivedDateTime,
+                                                     MessageInProcess = msg
+                                                 };
+            inProcessMsg.IsValid = false;
             if (msg != null)
-
             {
                 if (msg.MsgBody.Contains("Bad Message"))
                 {
-                    processingMsg.IsValid = false;
-                    processingMsg.ErrorMessage = "MessageBody contained 'Bad Message'";
+                    inProcessMsg.ErrorMessage = "MessageBody contained 'Bad Message'";
                 }
-
-                // TODO 5-17-15 George.  Do other validity checks as well?
-                // Other fields set OK.
+                else if (receivedDateTime == DateTime.MinValue)
+                {
+                    inProcessMsg.ErrorMessage = "receivedDateTime == DateTime.MinValue";
+                }
+                // In a real app there would likely be more validity checks.
+                else
+                {
+                    inProcessMsg.IsValid = true;
+                }
             }
             else
             {
-                processingMsg.IsValid = false;
-                processingMsg.ErrorMessage = "MsgBody could not be case to TestMessage.  Was null.";
+                inProcessMsg.ErrorMessage = "MsgBody could not be cast to TestMessage.  Was null.";
             }
-            return processingMsg;
+            return inProcessMsg;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
-DataAccess.DataFeed.IngestedDataDA
+GS.DataAccess.DataFeed.IngestedDataDA
   
 Copyright 2015 George Stevens
 
@@ -17,23 +17,29 @@ limitations under the License.
 */
 
 using GS.Contract.DataFeed;
+using GS.Ifx.Cloud;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
-using System.Configuration;
 using System.Diagnostics;
+using ServiceModelEx;
 
 namespace GS.DataAccess.DataFeed
 {
+    [GenericResolverBehavior] 
     public class IngestedDataDA : IIngestedDataDA
     {
-        void IIngestedDataDA.SaveTestMessage(FeedProcessingMsg msg)
+        private string m_ThisName = "IngestedDataDA";
+
+        void IIngestedDataDA.SaveTestMessage(InProcessFeedMsg msg)
         {
             TestMessageEntity msgEntity = null;
+            string moreExInfo = string.Empty;
             try
             {
                 msgEntity = MakeTestMessageEntity(msg);
-                CloudTable table = ObtainTableCreatIfNotExist("TestMessages");
+                CloudTable table = 
+                    AzureStorageHelpers.ObtainTableCreatIfNotExist(ConstantsNEnums.TestMessageTableName);
                 TableOperation insertOperation = TableOperation.Insert(msgEntity);
                 table.Execute(insertOperation);
             }
@@ -41,22 +47,36 @@ namespace GS.DataAccess.DataFeed
             {
                 if (ex.Message.Contains("409"))
                 {
-                    Console.WriteLine("Caught exception:\n   Likely RowKey already exists on insert.\n  ex = {0}", ex);
+                    moreExInfo = "\n HTTP 409 error code: Likely RowKey already exists on insert.";
                 }
+                DisplaySaveTestMessageException(ex, moreExInfo);
                 throw;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Caught exception:  ex = {0}", ex);
+                DisplaySaveTestMessageException(ex, null);
                 throw;
             }
         }
 
-        private TestMessageEntity MakeTestMessageEntity(FeedProcessingMsg msg)
+        private void DisplaySaveTestMessageException(Exception ex, string moreInfo)
+        {
+            string errMsg = String.Format("{0}.SaveTestMessage(): Caught exception:  ex = {1}",
+                m_ThisName, ex);
+            Console.WriteLine(errMsg);
+            Trace.TraceError("\n**" + errMsg);
+            if (!string.IsNullOrEmpty(moreInfo))
+            {
+                Console.WriteLine(moreInfo);
+                Trace.TraceError("\n**" + moreInfo);
+            }
+        }
+
+        private TestMessageEntity MakeTestMessageEntity(InProcessFeedMsg msg)
         {
             TestMessageEntity msgEntity = null;
-
-            TestMessage testMsg = msg.TheMessage as TestMessage;
+            // TODO 5-20-15 George Remove down cast.
+            TestMessage testMsg = msg.MessageInProcess as TestMessage;
             if (testMsg != null)
             {
                 msgEntity = new TestMessageEntity(testMsg.SourceGroupId,
@@ -66,14 +86,18 @@ namespace GS.DataAccess.DataFeed
                 Debug.Assert(msgEntity != null);
 
                 // From SbMessage
-                msgEntity.MessageId = msg.TheMessage.MessageId;
+                msgEntity.MessageId = msg.MessageInProcess.MessageId;
                 msgEntity.MessageSendDateTime = testMsg.MessageSendDateTime;
 
                 // From info on server
                 msgEntity.MessageReceivedDateTime = msg.MessageReceivedDateTime;
                 // Azure Table Storage does not support TimeSpan.
                 TimeSpan etTimeSpan = msg.MessageReceivedDateTime - testMsg.MessageSendDateTime;
-                msgEntity.ElapsedTimeString = etTimeSpan.ToString();
+                msgEntity.ElapsedTimeString = etTimeSpan.Days + "d:";
+                msgEntity.ElapsedTimeString += etTimeSpan.Hours + "h:";
+                msgEntity.ElapsedTimeString += etTimeSpan.Minutes + "m:";
+                msgEntity.ElapsedTimeString += etTimeSpan.Seconds + "s:";
+                msgEntity.ElapsedTimeString += etTimeSpan.Milliseconds + "ms";
 
                 // From TestMessage
                 msgEntity.MsgBody = testMsg.MsgBody;
@@ -91,50 +115,6 @@ namespace GS.DataAccess.DataFeed
                 Debug.Assert(false, "Cannot downcast to TestMessage.");
             }
             return msgEntity;
-        }
-
-        // TODO Put this in Infrastructure somewhere.
-        private static CloudTable ObtainTableCreatIfNotExist(string tableName)
-        {
-            CloudStorageAccount storageAccount = GetCloudStorageAccount();
-            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-            CloudTable table = tableClient.GetTableReference(tableName);
-            table.CreateIfNotExists();
-            return table;
-        }
-
-        // TODO Put this in Infrastructure somewhere.  And use a constant.
-        private static CloudStorageAccount GetCloudStorageAccount()
-        {
-            CloudStorageAccount storageAccount =
-                CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
-            return storageAccount;
-        }
-
-        // TODO Have a common worker that is called by both saves, passing the table name.
-        void IIngestedDataDA.SaveBadMessage(FeedProcessingMsg msg)
-        {
-            TestMessageEntity msgEntity = null;
-            try
-            {
-                msgEntity = MakeTestMessageEntity(msg);
-                CloudTable table = ObtainTableCreatIfNotExist("TestMessages");
-                TableOperation insertOperation = TableOperation.Insert(msgEntity);
-                table.Execute(insertOperation);
-            }
-            catch (StorageException ex)
-            {
-                if (ex.Message.Contains("409"))
-                {
-                    Console.WriteLine("Caught exception:\n   Likely RowKey already exists on insert.\n  ex = {0}", ex);
-                }
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Caught exception:  ex = {0}", ex);
-                throw;
-            }
         }
     }
 }
