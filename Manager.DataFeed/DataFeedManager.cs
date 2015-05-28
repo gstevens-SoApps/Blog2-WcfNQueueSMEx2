@@ -23,6 +23,7 @@ using GS.Ifx.UI;
 using ServiceModelEx;
 using System;
 using System.Diagnostics;
+using Microsoft.ServiceBus;
 
 namespace GS.Manager.DataFeed
 {
