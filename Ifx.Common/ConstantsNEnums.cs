@@ -21,6 +21,7 @@ namespace GS.Ifx.Common
     {
         // Names of Service Bus items.
         public const string IngestionQueueName = "IngestionQueue";
+        //public const string IngestionQueueName = "IngestionQueue3";
         public const string IngestionQueueEndpointName = "ingestionQueue"; 
     }
 }

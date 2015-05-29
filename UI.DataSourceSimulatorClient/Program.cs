@@ -47,13 +47,13 @@ namespace GS.UI.DataSourceSimulatorClient
                 {
                     break;
                 }
-                
+
                 try
                 {
                     // Assume the queue exists, having been previously provisioned in Azure Portal.
                     Console.WriteLine("{0}.Main(): Enqueueing test message..", m_ThisName);
 
-                    TestMessage msg = MakeTestMessage(++m_MsgSeqNumber, m_SourceId, m_SourceGroupId);
+                    TestMessage msg = MakeTestMessage(m_SourceGroupId, m_SourceId, ++m_MsgSeqNumber);
                     IngestTestData(msg, ConstantsNEnums.IngestionQueueEndpointName);
                 }
                 catch (Exception ex)
@@ -70,7 +70,7 @@ namespace GS.UI.DataSourceSimulatorClient
             m_SourceGroupId = 99;
         }
 
-        private static TestMessage MakeTestMessage(int sourceSeqNo, int sourceId, int sourceGroupId)
+        public static TestMessage MakeTestMessage(int sourceGroupId, int sourceId, int sourceSeqNo)
         {
             TestMessage msg = new TestMessage
             {
@@ -106,4 +106,86 @@ namespace GS.UI.DataSourceSimulatorClient
             }
         }
     }
+    //public class Program
+    //{
+    //    private static string m_ThisName = "DataSourceSimulatorClient";
+    //    private static int m_MsgSeqNumber;
+    //    private static int m_SourceId;
+    //    private static int m_SourceGroupId;
+
+
+    //    public static void Main(string[] args)
+    //    {
+    //        Console.Title = m_ThisName;
+    //        Console.WriteLine("{0}.Main(): Press <ENTER> to enqueue one", m_ThisName);
+    //        Console.WriteLine("  test message to SB queue '{0}' via WCF NetMessagingBinding",
+    //                           ConstantsNEnums.IngestionQueueName);
+    //        InitSourceIds(args);
+
+    //        while (true)
+    //        {
+    //            string userInput = ConsoleNTraceHelpers.PauseTillUserPressesEnterExitOnX();
+    //            if (userInput.ToLower() == "x")
+    //            {
+    //                break;
+    //            }
+                
+    //            try
+    //            {
+    //                // Assume the queue exists, having been previously provisioned in Azure Portal.
+    //                Console.WriteLine("{0}.Main(): Enqueueing test message..", m_ThisName);
+
+    //                TestMessage msg = MakeTestMessage(++m_MsgSeqNumber, m_SourceId, m_SourceGroupId);
+    //                IngestTestData(msg, ConstantsNEnums.IngestionQueueEndpointName);
+    //            }
+    //            catch (Exception ex)
+    //            {
+    //                Console.WriteLine("{0}.Main(): IngestTestData() proxy threw exception\n {1}.", m_ThisName, ex);
+    //            }
+    //        }
+    //    }
+
+    //    private static void InitSourceIds(string[] args)
+    //    {
+    //        // TODO 5-9-15 parse args for the source ids
+    //        m_SourceId = 9;
+    //        m_SourceGroupId = 99;
+    //    }
+
+    //    private static TestMessage MakeTestMessage(int sourceSeqNo, int sourceId, int sourceGroupId)
+    //    {
+    //        TestMessage msg = new TestMessage
+    //        {
+    //            MessageId = Guid.NewGuid(),
+    //            SourceMsgSeqNumber = sourceSeqNo,
+    //            SourceId = sourceId,
+    //            SourceGroupId = sourceGroupId,
+    //            MsgBody = "Testing, testing...."
+    //        };
+    //        return msg;
+    //    }
+
+    //    private static void IngestTestData(TestMessage msg, string queueName)
+    //    {
+    //        // Allow calculation of elapsed time: From proxy instantiation 
+    //        // till the message is received by the instantiated service instance.
+    //        msg.MessageSendDateTime = DateTime.Now;
+
+    //        // "Programming WCF Services" 3rd edition by Juval Lowy pp 259-260 recommends the
+    //        // following form when needing to catch exceptions near the SendQueuedTestMessage(). 
+    //        DataFeedsClient proxy = new DataFeedsClient(queueName);
+    //        try
+    //        {
+    //            proxy.IngestTestData(msg);
+    //            proxy.Close();
+    //            Console.WriteLine("{0}.IngestTestData(): Test message enqueued Ok.", m_ThisName);
+    //            ConsoleNTraceHelpers.DisplayTestMessage(msg);
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            Console.WriteLine("{0}.IngestTestData(): Proxy threw exception\n {1}.", m_ThisName, ex);
+    //            proxy.Abort();
+    //        }
+    //    }
+    //}
 }

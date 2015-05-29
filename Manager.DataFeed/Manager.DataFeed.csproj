@@ -65,6 +65,10 @@
       <Project>{c69bbcb2-796c-471b-bbaa-8aa40f8ecfb2}</Project>
       <Name>Engine.DataFeed</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ifx.Common\Ifx.Common.csproj">
+      <Project>{541d40e8-6896-4e29-8375-2604e5679e77}</Project>
+      <Name>Ifx.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ifx.UI\Ifx.UI.csproj">
       <Project>{ae0eff26-91b5-4866-b6cf-e77400e6784d}</Project>
       <Name>Ifx.UI</Name>

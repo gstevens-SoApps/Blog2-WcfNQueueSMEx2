@@ -30,5 +30,9 @@ namespace GS.DataAccess.DataFeed
         
         // Constants and Enums for this Data Accessor
         public const string TestMessageTableName = "TestMessages";
+        //public const string TestMessageTableName = "TestMessagesNew100It";
+        //public const string TestMessageTableName = "TestMessagesNew1000It";
+        //public const string TestMessageTableName = "TestMessagesNew10It";
+        //public const string TestMessageTableName = "TestMessagesJunk";
     }
 }

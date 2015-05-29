@@ -32,11 +32,25 @@ namespace GS.DataAccess.DataFeed
         [DataMember]
         public DateTime MessageReceivedDateTime { get; set; }
         [DataMember]
-        // 5-20-15 George.  The GenericResolver cannot resolve this and
-        // as a result it causes exceptions in the IngestedDataDA and the
-        // FeedValidityEngine.
+        public long QueueLength { get; set; }
+        [DataMember]
         public SbMessage MessageInProcess { get; set; }
-
-        //public TestMessage MessageInProcess { get; set; }
     }
+    //[DataContract(Namespace = "GeorgeStevens/SoApps/5/15")]
+    //public class InProcessFeedMsg
+    //{
+    //    [DataMember]
+    //    public bool IsValid { get; set; }
+    //    [DataMember]
+    //    public string ErrorMessage { get; set; }
+    //    [DataMember]
+    //    public DateTime MessageReceivedDateTime { get; set; }
+    //    [DataMember]
+    //    // 5-20-15 George.  The GenericResolver cannot resolve this and
+    //    // as a result it causes exceptions in the IngestedDataDA and the
+    //    // FeedValidityEngine.
+    //    public SbMessage MessageInProcess { get; set; }
+
+    //    //public TestMessage MessageInProcess { get; set; }
+    //}
 }
