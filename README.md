@@ -14,5 +14,5 @@ ITERATION 2 PLAN
 3. DELAYED Stretch Goal -- Add a second Manager to further demonstrate vertical slices and microservices.  This may not happen till Itertion 3.
 4. NOTE -- 5-21-15  Solution Structure and Setup Instructions are almost there, but still have discrepancies.
 5. NOTE -- 5-21-15  It now runs.
-6. NOTE -- 5-28-15  This code passed a series of rigorous stress tests using multiple threads to input data into the Data Feed.  The proxy and service handled sustaianed (5 to 10 minutes to input data) throughput of over 350 calls per second via 250 threads, each thread doing 1000 calls to the Data Feed service concurrently.  The service was also capable of scaling out so that up to 5 service instances running concurrently sped up emptying the queue containing over 200,000 items.  All of this without failure.
+6. NOTE -- 5-28-15  This code passed a series of rigorous stress tests using multiple threads to input data into the Data Feed.  The proxy and service handled sustained (5 to 10 minutes to input data) throughput of over 350 calls per second via 250 threads, each thread doing 1000 calls to the Data Feed service concurrently.  The service was also capable of scaling out so that up to 5 service instances running concurrently sped up emptying the queue containing over 200,000 items.  All of this without failure.
 
