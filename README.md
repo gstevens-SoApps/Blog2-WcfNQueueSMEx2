@@ -3,7 +3,7 @@ An SO App is a Service Oriented App.
 
 Code for the blog article "SO Apps 2, WcfNQueueSMEx2 – To be Determined" at  https://dotnetsilverlightprism.wordpress.com/2015/05/12/TobeDetermined/
 
-*  THIS Iteration 2 PROJECT IS CURRENTLY UNDER CONSTRUCTION and may not work!!  The blog article has not yet been written.
+*  THIS Iteration 2 project is CURRENTLY UNDER CONSTRUCTION and may not work!!  The blog article has not yet been written.
 
 *  Please read the Setup Instructions document for how to install ServiceModelEx and setup Azure to support this code.
 *  
