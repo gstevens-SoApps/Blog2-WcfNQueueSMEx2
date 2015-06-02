@@ -1,5 +1,5 @@
 ﻿/*
-GS.Contract.DataFeed.IDataFeeds
+GS.DataAccess.DataFeedAdmin.IFeedAdminDA
   
 Copyright 2015 George Stevens
 
@@ -15,14 +15,18 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-using System.ServiceModel;
 
-namespace GS.Contract.DataFeed
+using System.ServiceModel;
+using GS.Contract.DataFeed;
+
+namespace GS.DataAccess.DataFeedAdmin
 {
     [ServiceContract(Namespace = "GeorgeStevens/SoApps/5/15")]
-    public interface IDataFeeds
+    public interface IFeedAdminDA
     {
-        [OperationContract(IsOneWay = true)]
-        void IngestTestData(TestMessage dmsg);
+        [OperationContract]
+        long GetQueueLength(string queueName);
+        [OperationContract]
+        DataFeedStatistics GetFeedStatistics(string queueName);
     }
 }

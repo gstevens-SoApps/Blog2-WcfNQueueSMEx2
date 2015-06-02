@@ -67,5 +67,18 @@ namespace GS.Ifx.UI
             sb.Append(FormatSbMessageDisplay(msg));
             return sb.ToString();
         }
+
+        public static void DisplayExToConsoleNTrace(string callingMethodName, Exception ex)
+        {
+            string errMsg = String.Format("{0}: Caught exception:  ex = {1}", callingMethodName, ex);
+            Console.WriteLine(errMsg);
+            Trace.TraceError("\n**" + errMsg);
+        }
+
+        public static void DisplayInfoToConsoleNTrace(string info)
+        {
+            Console.WriteLine(info);
+            Trace.TraceError("\n**" + info);
+        }
     }
 }

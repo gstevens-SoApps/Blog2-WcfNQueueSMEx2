@@ -1,5 +1,5 @@
 ﻿/*
-Contract.DataFeed.DataFeedStatistics
+GS.Contract.DataFeed.DataFeedStatistics
   
 Copyright 2015 George Stevens
 
@@ -21,21 +21,17 @@ using System.Runtime.Serialization;
 
 namespace GS.Contract.DataFeed
 {
-    // Not currently used.  Something to consider for the future.  But maybe it
-    // does not belong here, but rather than in Admin?
     [DataContract(Namespace = "GeorgeStevens/SoApps/5/15")]
     public class DataFeedStatistics
     {
         [DataMember]
-        public int DataFeedId { get; set; }
-
+        public string FeedComponentName { get; set; }
         [DataMember]
         public DateTime StatsCollectionDateTime;
-
+        // TODO George 6-1-15.  This needs to be generalized to support more that queues.
         [DataMember]
-        public int QueueLength { get; set; }
-
+        public long QueueLength { get; set; }
         [DataMember]
-        public int DeadLetterQueueLength { get; set; }
+        public long DeadLetterQueueLength { get; set; }
     }
 }

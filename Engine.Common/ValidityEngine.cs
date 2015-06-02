@@ -1,5 +1,5 @@
 ﻿/*
-GS.Engine.DataFeed.FeedValidityEngine
+GS.Engine.Common.ValidityEngine
   
 Copyright 2015 George Stevens
 
@@ -17,17 +17,17 @@ limitations under the License.
 */
 
 using GS.Contract.DataFeed;
-using GS.DataAccess.DataFeed;
+using GS.DataAccess.Common;
 using System;
 using System.Diagnostics;
 using ServiceModelEx;
 
-namespace GS.Engine.DataFeed
+namespace GS.Engine.Common
 {
     [GenericResolverBehavior] 
-    public class FeedValidityEngine : IFeedValidityEngine
+    public class ValidityEngine : IValidityEngine
     {
-        InProcessFeedMsg IFeedValidityEngine.CheckValidity(TestMessage msg, DateTime receivedDateTime)
+        InProcessFeedMsg IValidityEngine.CheckValidity(TestMessage msg, DateTime receivedDateTime)
         {
             Debug.Assert(msg != null);
             Debug.Assert(receivedDateTime != DateTime.MinValue);

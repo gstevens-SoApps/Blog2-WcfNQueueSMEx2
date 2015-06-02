@@ -22,9 +22,19 @@ using System.Configuration;
 
 namespace GS.Ifx.Cloud
 {
+    // George 5-31-15.  Please see the comments in AzureServiceBusHelpers for the
+    // purpose of this class.
+
     public class AzureStorageHelpers
     {
-        // TODO Put this in Infrastructure somewhere.
+        public static void AzTableStorageInsert<T>(string tableName, T msgEntity) 
+            where T :TableEntity
+        {
+            CloudTable table = ObtainTableCreatIfNotExist(tableName);
+            TableOperation insertOperation = TableOperation.Insert(msgEntity);
+            table.Execute(insertOperation);
+        }
+
         public static CloudTable ObtainTableCreatIfNotExist(string tableName)
         {
             CloudStorageAccount storageAccount = GetCloudStorageAccount();
@@ -34,7 +44,6 @@ namespace GS.Ifx.Cloud
             return table;
         }
 
-        // TODO Put this in Infrastructure somewhere.  And use a constant.
         public static CloudStorageAccount GetCloudStorageAccount()
         {
             CloudStorageAccount storageAccount =

@@ -1,5 +1,5 @@
 ﻿/*
-GS.Engine.DataFeed.IFeedValidityEngine
+GS.DataAccess.DataFeed.IIngestedDataDA
   
 Copyright 2015 George Stevens
 
@@ -16,17 +16,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using GS.Contract.DataFeed;
-using GS.DataAccess.DataFeed;
-using System;
 using System.ServiceModel;
 
-namespace GS.Engine.DataFeed
+namespace GS.DataAccess.Common
 {
     [ServiceContract(Namespace = "GeorgeStevens/SoApps/5/15")]
-    public interface IFeedValidityEngine
+    public interface IIngestedDataDA
     {
         [OperationContract]
-        InProcessFeedMsg CheckValidity(TestMessage msg, DateTime receivedDateTime);
+        void SaveTestData(InProcessFeedMsg msg);
+
+        // Other contracts will follow.  To query and delete TestData.  
+        // To save, query, and delete data from messages other than TestMessages.
     }
 }

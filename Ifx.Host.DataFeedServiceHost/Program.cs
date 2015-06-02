@@ -16,11 +16,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using GS.Ifx.Common;
+using System.ServiceModel;
+using GS.Contract.DataFeed;
+using GS.DataAccess.Common;
 using GS.Ifx.UI;
 using GS.Manager.DataFeed;
+using ServiceModelEx;
 using ServiceModelEx.ServiceBus;
 using System;
+using ConstantsNEnums = GS.Ifx.Common.ConstantsNEnums;
 
 namespace GS.Ifx.Host.DataFeedServiceHost
 {
@@ -37,24 +41,47 @@ namespace GS.Ifx.Host.DataFeedServiceHost
         //
         // For web and workerrole situations, the assemblies must be prefixed with "App_Code."
         // That is all that needs to be done?
-        private static Contract.DataFeed.SbMessage sbMessage = null;
-        private static DataAccess.DataFeed.InProcessFeedMsg inProcessFeedMsg = null;
+        private static Contract.DataFeed.SbMessage m_SbMessage = null;
+        private static DataAccess.Common.InProcessFeedMsg m_InProcessFeedMsg = null;
 
         private static string m_ThisName = "DataFeedServiceHost";
 
         static void Main(string[] args)
         {
+            // Get rid of compiler warnings vy using the GenericResolver related variables.
+            m_SbMessage = new TestMessage();
+            m_InProcessFeedMsg = new InProcessFeedMsg();
+
             Console.Title = m_ThisName;
             Console.WriteLine("{0}.Main(): Entered. Awaiting your input to start the", m_ThisName);
             Console.WriteLine("  QueuedServicsBusHost for the Service Bus queue '{0}'\n  via WCF NetMessagingBinding.",
-                                ConstantsNEnums.IngestionQueueName);
+                                 ConstantsNEnums.IngestionQueueName);
             ConsoleNTraceHelpers.PauseTillUserPressesEnter();
-            QueuedServiceBusHost host = null;
+            QueuedServiceBusHost queuedHost = null;
+            ServiceHost<DataFeedManager> feedAdminHost = null;
             try
             {
-                host = new QueuedServiceBusHost(typeof(DataFeedManager));
-                host.Open();
+                Uri sbBaseAddr = new Uri("sb://AzExploreSbNS.servicebus.windows.net/");
+                queuedHost = new QueuedServiceBusHost(typeof(DataFeedManager), false, sbBaseAddr);
+                queuedHost.Open();
                 Console.WriteLine("{0}.Main():  QueuedServiceBusHost opened OK.  Working.....", m_ThisName);
+
+                Uri tcpBaseAddr = new Uri("net.tcp://localhost:8000/");
+                feedAdminHost = new ServiceHost<DataFeedManager>(tcpBaseAddr);
+                // When a non-queued endpoint is defined in the App.config for a service that
+                // is hosted in the QueuedServiceBusHost, this host will try to open that endpoint too.
+                // This will cause a timeout exception when it tries to verify the queue (which does
+                // not exist for a non-queued endpoint like TCP).  Therefore, one cannot
+                // use the app.config file to define non-queued endpoints in this situation.
+                // A workaround is the tcp endpoint for IFeedAdmin is defined in code instead, below.
+                // The client can, however, define the tcp endpoint in their app.config file.
+
+                // Transport security is the default, but a required arg to set Reliable = true.
+                NetTcpBinding tcpBinding = new NetTcpBinding(SecurityMode.Transport, true);
+                tcpBinding.TransactionFlow = true;
+                feedAdminHost.AddServiceEndpoint(typeof(IFeedAdmin), tcpBinding, "DataFeedManager");
+                feedAdminHost.Open();
+                Console.WriteLine("{0}.Main():  FeedAdmin Host opened OK.", m_ThisName);
             }
             catch (Exception ex)
             {
@@ -63,11 +90,35 @@ namespace GS.Ifx.Host.DataFeedServiceHost
             
             Console.WriteLine("\n{0}.Main():  Press ENTER to EXIT.", m_ThisName);
             Console.ReadLine();
-            if (host != null)
-            {
-                host.Close();
-            }
+            CloseOrAbortHosts(queuedHost, feedAdminHost);
             Console.WriteLine("\n{0}.Main(): Exiting......", m_ThisName);
+        }
+
+        private static void CloseOrAbortHosts(QueuedServiceBusHost queuedHost, 
+                                              ServiceHost<DataFeedManager> feedAdminHost)
+        {
+            if (queuedHost != null)
+            {
+                if (queuedHost.State != CommunicationState.Faulted)
+                {
+                    queuedHost.Close();
+                }
+                else
+                {
+                    queuedHost.Abort();
+                }
+            }
+            if (feedAdminHost != null)
+            {
+                if (feedAdminHost.State != CommunicationState.Faulted)
+                {
+                    feedAdminHost.Close();
+                }
+                else
+                {
+                    feedAdminHost.Abort();
+                }
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeed.IIngestedDataDA
+GS.Engine.Common.IValidityEngine
   
 Copyright 2015 George Stevens
 
@@ -16,14 +16,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using GS.Contract.DataFeed;
+using GS.DataAccess.Common;
+using System;
 using System.ServiceModel;
 
-namespace GS.DataAccess.DataFeed
+namespace GS.Engine.Common
 {
     [ServiceContract(Namespace = "GeorgeStevens/SoApps/5/15")]
-    public interface IIngestedDataDA
+    public interface IValidityEngine
     {
         [OperationContract]
-        void SaveTestMessage(InProcessFeedMsg msg);
+        InProcessFeedMsg CheckValidity(TestMessage msg, DateTime receivedDateTime);
     }
 }

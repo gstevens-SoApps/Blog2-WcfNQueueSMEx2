@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GS.DataAccess.DataFeed")]
+[assembly: AssemblyTitle("GS.DataAccess.DataFeedAdmin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("George Stevens")]
-[assembly: AssemblyProduct("GS.DataAccess.DataFeed")]
+[assembly: AssemblyProduct("GS.DataAccess.DataFeedAdmin")]
 [assembly: AssemblyCopyright("Copyright © George Stevens 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("01892503-8824-4bc6-b6ab-52dc0ec99183")]
+[assembly: Guid("f53b6651-6d2f-4720-9c7b-dffa8e59382b")]
 
 // Version information for an assembly consists of the following four values:
 //

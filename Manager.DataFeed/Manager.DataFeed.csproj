@@ -30,14 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ServiceBus, Version=2.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAzure.ServiceBus.2.6.7\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -57,13 +49,17 @@
       <Project>{c541ac0c-dcca-4ef0-9978-f976660dc246}</Project>
       <Name>Contract.DataFeed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccess.DataFeed\DataAccess.DataFeed.csproj">
-      <Project>{c006bd92-006e-422d-b1b6-a9b759984781}</Project>
-      <Name>DataAccess.DataFeed</Name>
+    <ProjectReference Include="..\DataAccess.DataFeedAdmin\DataAccess.DataFeedAdmin.csproj">
+      <Project>{380d1dd6-d0f9-4892-9b03-6829abc2084f}</Project>
+      <Name>DataAccess.DataFeedAdmin</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Engine.DataFeed\Engine.DataFeed.csproj">
-      <Project>{c69bbcb2-796c-471b-bbaa-8aa40f8ecfb2}</Project>
-      <Name>Engine.DataFeed</Name>
+    <ProjectReference Include="..\Engine.Common\Engine.Common.csproj">
+      <Project>{ca4a8f81-7ded-4a15-9ca0-98b882c8bc4d}</Project>
+      <Name>Engine.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.DataAccess.Common\GS.DataAccess.Common.csproj">
+      <Project>{1a028d48-41fc-4147-a937-62b204fead38}</Project>
+      <Name>GS.DataAccess.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ifx.Common\Ifx.Common.csproj">
       <Project>{541d40e8-6896-4e29-8375-2604e5679e77}</Project>
@@ -78,7 +74,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
