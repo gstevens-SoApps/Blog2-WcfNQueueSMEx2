@@ -17,8 +17,8 @@ limitations under the License.
 */
 
 using GS.Contract.DataFeed;
-using GS.Ifx.Cloud;
-using GS.Ifx.UI;
+using GS.iFX.Azure;
+using GS.iFX.TestUI;
 using Microsoft.WindowsAzure.Storage;
 using System;
 using System.Diagnostics;

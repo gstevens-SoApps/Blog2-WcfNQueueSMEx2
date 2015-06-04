@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.DataSourceSimulatorClient", "UI.DataSourceSimulatorClient\UI.DataSourceSimulatorClient.csproj", "{AF96155B-7369-4F04-9F08-66D9ABD1BE71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.Test.Client.DataSourceSimulator", "GS.Test.Client.DataSourceSimulator\GS.Test.Client.DataSourceSimulator.csproj", "{AF96155B-7369-4F04-9F08-66D9ABD1BE71}"
 EndProject
-Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Ifx.Host.Cloud.DataFeedSvc", "Ifx.Host.Cloud.DataFeedSvc\Ifx.Host.Cloud.DataFeedSvc.ccproj", "{28D9F611-AB48-404E-ACA7-6702682C2E9D}"
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "GS.iFX.Host.Azure.DataFeedSvc", "GS.iFX.Host.Azure.DataFeedSvc\GS.iFX.Host.Azure.DataFeedSvc.ccproj", "{28D9F611-AB48-404E-ACA7-6702682C2E9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ifx.Host.Cloud.DataFeedWorker", "Ifx.Host.Cloud.DataFeedWorker\Ifx.Host.Cloud.DataFeedWorker.csproj", "{31444D8C-0160-4C48-A436-6169A67CE88F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.iFX.Host.Azure.DataFeedWorker", "GS.iFX.Host.Azure.DataFeedWorker\GS.iFX.Host.Azure.DataFeedWorker.csproj", "{31444D8C-0160-4C48-A436-6169A67CE88F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ifx.Host.DataFeedServiceHost", "Ifx.Host.DataFeedServiceHost\Ifx.Host.DataFeedServiceHost.csproj", "{88930225-83B4-4204-8199-4F1F3851286E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.iFX.Host.DataFeedServiceHost", "GS.iFX.Host.DataFeedServiceHost\GS.iFX.Host.DataFeedServiceHost.csproj", "{88930225-83B4-4204-8199-4F1F3851286E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{75AFC8A3-49E1-41D0-B83F-408DA4F1AFCD}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,47 +20,51 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{CCBF735F-720B-43FF-A7DF-2DEE07CC6D99}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6620C05F-8FC2-4F4A-81A3-4490CE9169CF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iFX", "iFX", "{6620C05F-8FC2-4F4A-81A3-4490CE9169CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contract", "Contract", "{BDA95BC5-3FAB-4577-A6C7-AF3CF9049698}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contract.DataFeed", "Contract.DataFeed\Contract.DataFeed.csproj", "{C541AC0C-DCCA-4EF0-9978-F976660DC246}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.Contract.DataFeed", "GS.Contract.DataFeed\GS.Contract.DataFeed.csproj", "{C541AC0C-DCCA-4EF0-9978-F976660DC246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ifx.Common", "Ifx.Common\Ifx.Common.csproj", "{541D40E8-6896-4E29-8375-2604E5679E77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.iFX.Common", "GS.iFX.Common\GS.iFX.Common.csproj", "{541D40E8-6896-4E29-8375-2604E5679E77}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Proxy", "Proxy", "{9225326A-E37A-4AB6-88BD-9A7364CC3AB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.DataFeed", "Proxy.DataFeed\Proxy.DataFeed.csproj", "{C0B24790-49BC-4C00-932E-78C8849973B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.Proxy.DataFeed", "GS.Proxy.DataFeed\GS.Proxy.DataFeed.csproj", "{C0B24790-49BC-4C00-932E-78C8849973B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manager", "Manager", "{9170CCE0-CA2C-43BF-BED3-644F0981FBE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manager.DataFeed", "Manager.DataFeed\Manager.DataFeed.csproj", "{8C080184-C5AC-4496-BED0-ACF4D88AE913}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.Manager.DataFeed", "GS.Manager.DataFeed\GS.Manager.DataFeed.csproj", "{8C080184-C5AC-4496-BED0-ACF4D88AE913}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ifx.UI", "Ifx.UI\Ifx.UI.csproj", "{AE0EFF26-91B5-4866-B6CF-E77400E6784D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.iFX.TestUI", "GS.iFX.TestUI\GS.iFX.TestUI.csproj", "{AE0EFF26-91B5-4866-B6CF-E77400E6784D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Host", "Infrastructure.Host", "{E01AD83F-A174-45EA-97E6-AD8894E50607}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iFX.Host", "iFX.Host", "{E01AD83F-A174-45EA-97E6-AD8894E50607}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Explore", "Explore", "{D43E01FB-E778-4066-8DA1-3548D534A083}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explore.AzTableStorageApp", "Explore.AzTableStorageApp\Explore.AzTableStorageApp.csproj", "{3895E3C3-BDC1-4EF5-A329-2390BF51D088}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.Explore.AzTableStorageApp", "GS.Explore.AzTableStorageApp\GS.Explore.AzTableStorageApp.csproj", "{3895E3C3-BDC1-4EF5-A329-2390BF51D088}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{89956202-602F-4A40-AACE-41E18DFB6A81}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{6988E0C8-F818-4F64-9648-33DC537E04EF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Common", "Infrastructure.Common", "{23D30BBD-028E-4D41-8F0B-7EA3D10CB3C5}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{B34A8EBA-7932-4A6B-98F4-64AC5D4A70EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.Timer", "Utilities.Timer\Utilities.Timer.csproj", "{26978DCC-0E3A-4B70-9327-7D70C2C2E31B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.Utilities.Timer", "GS.Utilities.Timer\GS.Utilities.Timer.csproj", "{26978DCC-0E3A-4B70-9327-7D70C2C2E31B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ifx.Cloud", "Ifx.Cloud\Ifx.Cloud.csproj", "{527F9852-81F8-4B53-A09F-0E26E26C2ACA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.iFX.Azure", "GS.iFX.Azure\GS.iFX.Azure.csproj", "{527F9852-81F8-4B53-A09F-0E26E26C2ACA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.DataFeedAdmin", "DataAccess.DataFeedAdmin\DataAccess.DataFeedAdmin.csproj", "{380D1DD6-D0F9-4892-9B03-6829ABC2084F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.DataAccess.DataFeedAdmin", "GS.DataAccess.DataFeedAdmin\GS.DataAccess.DataFeedAdmin.csproj", "{380D1DD6-D0F9-4892-9B03-6829ABC2084F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine.Common", "Engine.Common\Engine.Common.csproj", "{CA4A8F81-7DED-4A15-9CA0-98B882C8BC4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.Engine.Common", "GS.Engine.Common\GS.Engine.Common.csproj", "{CA4A8F81-7DED-4A15-9CA0-98B882C8BC4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.DataAccess.Common", "GS.DataAccess.Common\GS.DataAccess.Common.csproj", "{1A028D48-41FC-4147-A937-62B204FEAD38}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceModelEx", "ServiceModelEx", "{FD5A8255-DA87-4A1C-BB11-726005D133CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{7B4CADB9-6234-4ABC-89FE-C9C7A937E4BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test.Client", "Test.Client", "{93F08B92-03CB-427F-BCB5-4F54D28AB7D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -212,12 +216,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71} = {CCBF735F-720B-43FF-A7DF-2DEE07CC6D99}
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71} = {93F08B92-03CB-427F-BCB5-4F54D28AB7D8}
 		{28D9F611-AB48-404E-ACA7-6702682C2E9D} = {E01AD83F-A174-45EA-97E6-AD8894E50607}
 		{31444D8C-0160-4C48-A436-6169A67CE88F} = {E01AD83F-A174-45EA-97E6-AD8894E50607}
 		{88930225-83B4-4204-8199-4F1F3851286E} = {E01AD83F-A174-45EA-97E6-AD8894E50607}
 		{C541AC0C-DCCA-4EF0-9978-F976660DC246} = {BDA95BC5-3FAB-4577-A6C7-AF3CF9049698}
-		{541D40E8-6896-4E29-8375-2604E5679E77} = {23D30BBD-028E-4D41-8F0B-7EA3D10CB3C5}
+		{541D40E8-6896-4E29-8375-2604E5679E77} = {6620C05F-8FC2-4F4A-81A3-4490CE9169CF}
 		{C0B24790-49BC-4C00-932E-78C8849973B6} = {9225326A-E37A-4AB6-88BD-9A7364CC3AB1}
 		{8C080184-C5AC-4496-BED0-ACF4D88AE913} = {9170CCE0-CA2C-43BF-BED3-644F0981FBE3}
 		{AE0EFF26-91B5-4866-B6CF-E77400E6784D} = {6620C05F-8FC2-4F4A-81A3-4490CE9169CF}

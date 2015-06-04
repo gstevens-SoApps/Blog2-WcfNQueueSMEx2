@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GS.DataAccess.Common")]
+[assembly: AssemblyTitle("GS.Explore.AzTableStorageApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("George Stevens")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("40ec8f20-187e-4a96-8119-f9524d2fc488")]
+[assembly: Guid("a9f80976-4337-4240-9ca5-13ad3246e2e3")]
 
 // Version information for an assembly consists of the following four values:
 //

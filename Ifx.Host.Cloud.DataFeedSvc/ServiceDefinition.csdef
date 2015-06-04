@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="Ifx.Host.Cloud.DataFeedSvc" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-06.2.4">
-  <WorkerRole name="Ifx.Host.Cloud.DataFeedWorker" vmsize="Small" />
-</ServiceDefinition>

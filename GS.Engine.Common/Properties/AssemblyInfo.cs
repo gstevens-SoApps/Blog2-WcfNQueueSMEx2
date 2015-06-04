@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GS.DataAccess.Common")]
+[assembly: AssemblyTitle("GS.Engine.Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("George Stevens")]
 [assembly: AssemblyProduct("WcfNQueueSMEx2")]
-[assembly: AssemblyCopyright("Copyright © George Stevens 2015")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("40ec8f20-187e-4a96-8119-f9524d2fc488")]
+[assembly: Guid("aa3d075e-3a3c-4893-94bb-abec4df741f1")]
 
 // Version information for an assembly consists of the following four values:
 //
