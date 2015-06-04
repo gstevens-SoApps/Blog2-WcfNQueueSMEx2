@@ -15,5 +15,5 @@ ITERATION 2 PLAN
 5. NOTE -- 5-21-15  It now runs.
 6. NOTE -- 5-28-15  This code passed a series of rigorous stress tests using multiple threads to input data into the Data Feed.  The proxy and service handled sustained (5 to 10 minutes to input data) throughput of over 350 calls per second via 250 threads, each thread doing 1000 calls to the Data Feed service concurrently.  The service was also capable of scaling out so that up to 5 service instances running concurrently sped up emptying the queue containing over 200,000 items.  All of this without failure.
 7. NOTE -- 6-2-15  The DataAccessors and their repositories that decouple them from specific storage and done and organized in their final structure.  Also added the IFeedAdmin contract to the DataFeedManager to demo multiple contracts per manager.  Solution structure is approaching it final state, but still needs a lot of renaming.  System diagrams are near being done.
-8. NOTE -- 6-2-15  Solution structure finalized and documented.  Starting blog article for this version, and wrapping up loose ends.  Updating Setup Instructions.
+8. NOTE -- 6-4-15  Solution structure finalized and documented.  Starting blog article for this version, and wrapping up loose ends.  Updating Setup Instructions.
 
