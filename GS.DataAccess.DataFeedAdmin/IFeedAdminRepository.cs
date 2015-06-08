@@ -20,7 +20,7 @@ using GS.Contract.DataFeed;
 
 namespace GS.DataAccess.DataFeedAdmin
 {
-    // George 5-31-15.  Please see the comments in FeedAdminDA for the purpose
+    // Please see the comments in FeedAdminDA for the purpose
     // of this interface.
 
     public interface IFeedAdminRepository

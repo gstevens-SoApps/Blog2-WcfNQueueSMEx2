@@ -28,7 +28,7 @@ namespace GS.Contract.DataFeed
         public string FeedComponentName { get; set; }
         [DataMember]
         public DateTime StatsCollectionDateTime;
-        // TODO George 6-1-15.  This needs to be generalized to support more that queues.
+        // TODO George 6-1-15.  This needs to be generalized to support more than queues.
         [DataMember]
         public long QueueLength { get; set; }
         [DataMember]

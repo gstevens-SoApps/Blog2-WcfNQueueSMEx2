@@ -23,15 +23,8 @@ using GS.iFX.TestUI;
 
 namespace GS.DataAccess.DataFeedAdmin
 {
-    // George 5-31-15.  Please see the comments in FeedAdminDA for more about the purpose
+    // Please see the comments in FeedAdminDA for more about the purpose
     // of this class.
-
-    // George 5-31-15.  The static AzureServiceBusHelpers exist so
-    // that other components throughout the system can reuse the boiler
-    // plate code involved in doing these service bus operations.  Thus, they
-    // do not have to depend upon code hard coded into this respository or
-    // duplicated throughout the system.  Note there is no business logic
-    // in these helpers.
 
     public class FeedAdminRepositoryAzSb : IFeedAdminRepository
     {

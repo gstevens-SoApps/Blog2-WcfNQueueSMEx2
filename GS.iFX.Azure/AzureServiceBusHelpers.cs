@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using System.Configuration;
+using System.Diagnostics;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 
@@ -28,26 +30,39 @@ namespace GS.iFX.Azure
     // duplicated throughout the system.  Note there is no business logic
     // in these helpers.
 
-    // Note, this is "push down", information hiding programming.  Hiding the how and what.  
-    // D.L. Parnas would like it.
+    // Note, this is "push down", information hiding programming.  Hiding the how and where.  
+    // David Parnas would like it.
 
     public static class AzureServiceBusHelpers
     {
-        // TODO George 5-31-15 Get the connection string from an app.config.
-        private const string ConnectionString =
-                "Endpoint=sb://azexploresbns.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=agcbG5SUSKB7AyaT9zkOfQ4Cqj4P5M4TAsxPGOKmUYs=";
+        private static string m_ConnectionString;
+
+        static AzureServiceBusHelpers()
+        {
+            m_ConnectionString = GetSbConnectionString();
+            Debug.Assert(!string.IsNullOrEmpty(m_ConnectionString));
+        }
+       
         public static long GetQueueLength(string queueName)
         {
-            var nsmgr = NamespaceManager.CreateFromConnectionString(ConnectionString);
+            var nsmgr = NamespaceManager.CreateFromConnectionString(m_ConnectionString);
             long count = nsmgr.GetQueue(queueName).MessageCount;
             return count;
         }
 
         public static QueueDescription GetQueueDescription(string queueName)
         {
-            var nsmgr = NamespaceManager.CreateFromConnectionString(ConnectionString);
+            
+            var nsmgr = NamespaceManager.CreateFromConnectionString(m_ConnectionString);
             QueueDescription queueDescr = nsmgr.GetQueue(queueName);
             return queueDescr;
+        }
+
+        private static string GetSbConnectionString()
+        {
+            // The app.config file resides in the service host of the service calling this.
+            string connString = ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"];
+            return connString;
         }
     }
 }

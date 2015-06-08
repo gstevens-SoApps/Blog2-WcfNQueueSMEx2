@@ -24,5 +24,8 @@ namespace GS.Contract.DataFeed
     {
         [OperationContract(IsOneWay = true)]
         void IngestTestData(TestMessage dmsg);
+
+        // In a production app there could be a number of data feeds.
+        // IngestPointOfSaleData(), IngestSupplyChainData(), IngestPowerPlantMonitoringData(), etc.
     }
 }

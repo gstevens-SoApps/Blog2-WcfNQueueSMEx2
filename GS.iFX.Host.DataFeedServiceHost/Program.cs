@@ -39,8 +39,8 @@ namespace GS.iFX.Host.DataFeedServiceHost
         // reference to any type in the assembly.  That is sufficient to ensure the GenericResolver
         // will work properly in a non-web/non-workerrole situation. 
         //
-        // For web and workerrole situations, the assemblies must be prefixed with "App_Code."
-        // That is all that needs to be done?
+        // For web and workerrole situations, the assembly name must be prefixed with "App_Code."
+        // That is all that needs to be done.  Variables here are not required.
         private static Contract.DataFeed.SbMessage m_SbMessage = null;
         private static DataAccess.Common.InProcessFeedMsg m_InProcessFeedMsg = null;
 
@@ -48,7 +48,7 @@ namespace GS.iFX.Host.DataFeedServiceHost
 
         static void Main(string[] args)
         {
-            // Get rid of compiler warnings vy using the GenericResolver related variables.
+            // Get rid of compiler warnings by using the GenericResolver related variables.
             m_SbMessage = new TestMessage();
             m_InProcessFeedMsg = new InProcessFeedMsg();
 

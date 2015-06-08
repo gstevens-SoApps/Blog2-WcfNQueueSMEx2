@@ -43,25 +43,5 @@ namespace GS.Proxy.DataFeed
                 throw;
             }
         }
-
-        // TODO 5-17-15 George.  The NetMessagingBinding requires
-        // OneWay=true. Move this operation into another service contract
-        // that uses a TCP binding, not NetMessagingBinding.
-        //public DataFeedStatistics CollectDataFeedStatistics()
-        //{
-        //    DataFeedStatistics stats = null;
-        //    try
-        //    {
-        //        stats = Channel.CollectDataFeedStatistics();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Abort();
-        //        throw;
-        //    }
-        //    return stats;
-        //}
-
-
     }
 }

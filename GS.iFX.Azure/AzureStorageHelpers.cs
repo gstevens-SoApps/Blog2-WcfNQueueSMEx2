@@ -16,6 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using System.Diagnostics;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using System.Configuration;
@@ -46,8 +47,10 @@ namespace GS.iFX.Azure
 
         public static CloudStorageAccount GetCloudStorageAccount()
         {
-            CloudStorageAccount storageAccount =
-                CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+            // The app.config file resides in the service host of the service calling this.
+            string connString = ConfigurationManager.AppSettings["StorageConnectionString"];
+            Debug.Assert(!string.IsNullOrEmpty(connString));
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connString);
             return storageAccount;
         }
     }

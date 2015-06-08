@@ -27,7 +27,7 @@ namespace GS.Engine.Common
     [GenericResolverBehavior] 
     public class ValidityEngine : IValidityEngine
     {
-        InProcessFeedMsg IValidityEngine.CheckValidity(TestMessage msg, DateTime receivedDateTime)
+        InProcessFeedMsg IValidityEngine.CheckTestMessageValidity(TestMessage msg, DateTime receivedDateTime)
         {
             Debug.Assert(msg != null);
             Debug.Assert(receivedDateTime != DateTime.MinValue);

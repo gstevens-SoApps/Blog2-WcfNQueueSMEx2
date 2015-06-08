@@ -37,8 +37,9 @@ namespace GS.iFX.Host.Azure.DataFeedWorker
             
             // The service host is opened in this Run() method so as to have the queue 
             // immediately emptied upon it successfully starting.  The queue will not
-            // be emptied upon the service host starting if launched from OnStart().
-            bool serviceHostOk = OpenServiceHost();
+            // be emptied upon service host start if launched from OnStart().
+            bool serviceHostOk = false;
+            serviceHostOk = OpenServiceHost();
             if (serviceHostOk)
             {
                 try

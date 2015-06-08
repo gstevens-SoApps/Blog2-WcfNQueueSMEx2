@@ -39,7 +39,7 @@ namespace GS.iFX.TestUI
             return userInput;
         }
 
-        private const string TestMessageStartDisplayString = "**TestMessage follows:\n";
+        private const string TestMessageStartDisplayString = "\n**TestMessage follows:\n";
 
         public static void DisplayTestMessage(TestMessage msg)
         {
@@ -78,7 +78,7 @@ namespace GS.iFX.TestUI
         public static void DisplayInfoToConsoleNTrace(string info)
         {
             Console.WriteLine(info);
-            Trace.TraceError("\n**" + info);
+            Trace.TraceInformation("\n**" + info);
         }
     }
 }

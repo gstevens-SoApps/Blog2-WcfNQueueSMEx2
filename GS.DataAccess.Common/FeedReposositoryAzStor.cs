@@ -35,10 +35,8 @@ namespace GS.DataAccess.Common
             string moreExInfo = string.Empty;
             try
             {
-                // TODO 5-22-15 bubble isPerformanceTest argument through somehow.  In msg or out of band.
-                //msgEntity = MakeTestMessageEntity(msg, true);
-                msgEntity = MakeTestDataEntity(msg, false);
-
+                msgEntity = MakeTestDataEntity(msg);
+                
                 // TODO 5-23-15 Failsafe requires using Transient Fault application block and
                 // maybe circuit breaker pattern on all requests for cloud services.  Wrap below
                 // code in that stuff as an example.
@@ -48,41 +46,47 @@ namespace GS.DataAccess.Common
             {
                 if (ex.Message.Contains("409"))
                 {
-                    moreExInfo = "\n HTTP 409 error code: Likely RowKey already exists on insert.";
+                    moreExInfo = "\n HTTP 409 error code: RowKey already exists in table on insert.";
                 }
-                ConsoleNTraceHelpers.DisplayExToConsoleNTrace(m_ThisName + ".SaveTestData()", ex);
+                string displayMsg = string.Format("\n{0}.SaveTestData():", m_ThisName);
+                ConsoleNTraceHelpers.DisplayExToConsoleNTrace(displayMsg, ex);
                 ConsoleNTraceHelpers.DisplayInfoToConsoleNTrace(moreExInfo);
                 throw;
             }
             catch (Exception ex)
             {
-                ConsoleNTraceHelpers.DisplayExToConsoleNTrace(m_ThisName + ".SaveTestData()", ex);
+                string displayMsg = string.Format("\n{0}.SaveTestData():", m_ThisName);
+                ConsoleNTraceHelpers.DisplayExToConsoleNTrace(displayMsg, ex);
                 throw;
             }
         }
 
-        private TestDataEntity MakeTestDataEntity(InProcessFeedMsg msg, bool isPerformanceTest)
+        private TestDataEntity MakeTestDataEntity(InProcessFeedMsg msg)
         {
             TestDataEntity msgEntity = null;
 
             TestMessage testMsg = msg.MessageInProcess as TestMessage;
             if (testMsg != null)
             {
+                // Save for testing.
                 // The intent below is that the received date time will be unique due to
-                // the sequential nature of the queue.  However for basic testing it is
-                // sometimes nice to see ordering of the table in terms of send date time.
-                DateTime rowKey;
-                if (isPerformanceTest)
-                {
-                    rowKey = msg.MessageReceivedDateTime;
-                }
-                else
-                {
-                    rowKey = testMsg.MessageSendDateTime;
-                }
-                msgEntity = new TestDataEntity(testMsg.SourceGroupId,
-                    testMsg.SourceId,
-                    rowKey);
+                // the sequential nature of the queue and used during performance tests
+                // which, due to being multi-threaded, can have identical send date times.
+                // However for basic testing it is sometimes nice to see ordering of the
+                // table in terms of send date time.
+                //DateTime rowKey;
+                //bool isPerformanceTest = false;
+                //if (isPerformanceTest)
+                //{
+                //    rowKey = msg.MessageReceivedDateTime;
+                //}
+                //else
+                //{
+                //    rowKey = testMsg.MessageSendDateTime;
+                //}
+                //msgEntity = new TestDataEntity(testMsg.SourceGroupId, testMsg.SourceId, rowKey);
+
+                msgEntity = new TestDataEntity(testMsg.SourceGroupId, testMsg.SourceId, testMsg.MessageId);
                 Debug.Assert(testMsg != null);
                 Debug.Assert(msgEntity != null);
 

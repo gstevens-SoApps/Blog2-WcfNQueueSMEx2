@@ -27,6 +27,9 @@ namespace GS.Engine.Common
     public interface IValidityEngine
     {
         [OperationContract]
-        InProcessFeedMsg CheckValidity(TestMessage msg, DateTime receivedDateTime);
+        InProcessFeedMsg CheckTestMessageValidity(TestMessage msg, DateTime receivedDateTime);
+
+        // In a production app there would me more validity checks.  Perhaps one for
+        // each service operation to check the validity of its arguments.  And even more.
     }
 }

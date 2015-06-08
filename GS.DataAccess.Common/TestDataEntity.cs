@@ -23,17 +23,22 @@ namespace GS.DataAccess.Common
 {
     public class TestDataEntity : TableEntity
     {
-        // TODO Remove the business logic in the ctor so that this class can be put
-        // in Infrastructure?
-        public TestDataEntity(int sourceGroupId, int sourceId, DateTime messageSendDateTime)
+        // Save for testing.
+        //public TestDataEntity(int sourceGroupId, int sourceId, DateTime messageSendDateTime)
+        //{
+        //    PartitionKey = string.Format("{0:d4}-", sourceGroupId) + string.Format("{0:d4}", sourceId);
+
+        //    // Ensure that time zone does NOT get appended to the string by
+        //    // setting kind to Unspecified. "o" is used to include milliseconds since
+        //    // without them one easily encounters insert exceptions due to duplicate row keys.
+        //    DateTime unspecifiedDt = DateTime.SpecifyKind(messageSendDateTime, DateTimeKind.Unspecified);
+        //    RowKey = unspecifiedDt.ToString("o");
+        //}
+
+        public TestDataEntity(int sourceGroupId, int sourceId, Guid messageId)
         {
             PartitionKey = string.Format("{0:d4}-", sourceGroupId) + string.Format("{0:d4}", sourceId);
-
-            // Ensure that time zone does NOT get appended to the string by
-            // setting kind to Unspecified. "o" is used to include milliseconds since
-            // without them one easily encounters insert exceptions due to duplicate row keys.
-            DateTime unspecifiedDt = DateTime.SpecifyKind(messageSendDateTime, DateTimeKind.Unspecified);
-            RowKey = unspecifiedDt.ToString("o");
+            RowKey = messageId.ToString();
         }
 
         public TestDataEntity()

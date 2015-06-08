@@ -16,6 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using System.Diagnostics;
 using GS.Contract.DataFeed;
 
 namespace GS.DataAccess.DataFeedAdmin
@@ -26,20 +27,12 @@ namespace GS.DataAccess.DataFeedAdmin
 
         public FeedAdminDA()
         {
-            // 5-31-15 George.  
+
             // The purpose for adding the indirection of a repository is to
             // decouple the DataAccessor from the specific type of data base
-            // or service api that provides the data.  With this decoupling
-            // achieved by probramming to the IFeedAdminDA interface it is easy
+            // or service api that provides the data.  With the decoupling
+            // achieved by programming to the interface it is easy
             // to change service providers without many code changes.
-            
-            // I have kept this code very simple so that it is easier to follow.
-
-            // But please note that by using a factory to instantiate the 
-            // appropriate instance of the repository, or by using dependency injection,
-            // one can quickly adjust for testing and other situations where different
-            // repositorys are required.  This uses the service bus repository.
-            // You may also want one for MSMQ, or for other queuing frameworks.
             m_DataFeedAdminRepository = new FeedAdminRepositoryAzSb();
         }
 
@@ -47,15 +40,16 @@ namespace GS.DataAccess.DataFeedAdmin
 
         long IFeedAdminDA.GetQueueLength(string queueName)
         {
+            Debug.Assert(!string.IsNullOrEmpty(queueName));
             return m_DataFeedAdminRepository.GetQueueLength(queueName);
         }
 
         DataFeedStatistics IFeedAdminDA.GetFeedStatistics(string queueName)
         {
+            Debug.Assert(!string.IsNullOrEmpty(queueName));
             DataFeedStatistics stats = m_DataFeedAdminRepository.GetFeedStatistics(queueName);
             return stats;
         }
         #endregion
-
     }
 }

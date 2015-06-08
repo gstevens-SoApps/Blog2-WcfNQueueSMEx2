@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.Test.Client.DataSourceSimulator", "GS.Test.Client.DataSourceSimulator\GS.Test.Client.DataSourceSimulator.csproj", "{AF96155B-7369-4F04-9F08-66D9ABD1BE71}"
-EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "GS.iFX.Host.Azure.DataFeedSvc", "GS.iFX.Host.Azure.DataFeedSvc\GS.iFX.Host.Azure.DataFeedSvc.ccproj", "{28D9F611-AB48-404E-ACA7-6702682C2E9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.iFX.Host.Azure.DataFeedWorker", "GS.iFX.Host.Azure.DataFeedWorker\GS.iFX.Host.Azure.DataFeedWorker.csproj", "{31444D8C-0160-4C48-A436-6169A67CE88F}"
@@ -66,6 +64,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{7B4CADB9-6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test.Client", "Test.Client", "{93F08B92-03CB-427F-BCB5-4F54D28AB7D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS.Test.Client.DataSourceSimulator", "GS.Test.Client.DataSourceSimulator\GS.Test.Client.DataSourceSimulator.csproj", "{AF96155B-7369-4F04-9F08-66D9ABD1BE71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,15 +76,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Design|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Design|Any CPU.Build.0 = Debug|Any CPU
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Design|x86.ActiveCfg = Debug|Any CPU
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Release|x86.ActiveCfg = Release|Any CPU
 		{28D9F611-AB48-404E-ACA7-6702682C2E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{28D9F611-AB48-404E-ACA7-6702682C2E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28D9F611-AB48-404E-ACA7-6702682C2E9D}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -211,12 +202,20 @@ Global
 		{1A028D48-41FC-4147-A937-62B204FEAD38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A028D48-41FC-4147-A937-62B204FEAD38}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1A028D48-41FC-4147-A937-62B204FEAD38}.Release|x86.ActiveCfg = Release|Any CPU
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Design|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Design|Any CPU.Build.0 = Debug|Any CPU
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Design|x86.ActiveCfg = Debug|Any CPU
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AF96155B-7369-4F04-9F08-66D9ABD1BE71} = {93F08B92-03CB-427F-BCB5-4F54D28AB7D8}
 		{28D9F611-AB48-404E-ACA7-6702682C2E9D} = {E01AD83F-A174-45EA-97E6-AD8894E50607}
 		{31444D8C-0160-4C48-A436-6169A67CE88F} = {E01AD83F-A174-45EA-97E6-AD8894E50607}
 		{88930225-83B4-4204-8199-4F1F3851286E} = {E01AD83F-A174-45EA-97E6-AD8894E50607}
@@ -231,5 +230,6 @@ Global
 		{380D1DD6-D0F9-4892-9B03-6829ABC2084F} = {6988E0C8-F818-4F64-9648-33DC537E04EF}
 		{CA4A8F81-7DED-4A15-9CA0-98B882C8BC4D} = {89956202-602F-4A40-AACE-41E18DFB6A81}
 		{1A028D48-41FC-4147-A937-62B204FEAD38} = {6988E0C8-F818-4F64-9648-33DC537E04EF}
+		{AF96155B-7369-4F04-9F08-66D9ABD1BE71} = {93F08B92-03CB-427F-BCB5-4F54D28AB7D8}
 	EndGlobalSection
 EndGlobal

@@ -16,6 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using System.Diagnostics;
 using GS.iFX.TestUI;
 using ServiceModelEx;
 
@@ -29,6 +30,21 @@ namespace GS.DataAccess.Common
 
         public IngestedDataDA()
         {
+            // The purpose for adding the indirection of a repository is to
+            // decouple the DataAccessor from the specific type of data base
+            // or service api that provides the data.  With the decoupling
+            // achieved by programming to the interface it is easy
+            // to change service providers without many code changes.
+
+            // A more flexible design to use in real life is to use an
+            // abstract factory to create the storage specific repository based upon
+            // configuration data residing in a database or config file.  The
+            // abstract factory can then be either dependency injected or coded in the ctor.
+            // In either case use an out-of-band parameter (in the message header)
+            // to determine which storage specific concrete instance of the repository to create.
+            // Here's an article about abstract factories:
+            // https://dotnetsilverlightprism.wordpress.com/2013/05/18/solid-abstract-factory-strategy-pattern-dependency-injection/
+            
             m_FeedRepository = new FeedReposositoryAzStor();
         }
 
@@ -36,7 +52,10 @@ namespace GS.DataAccess.Common
 
         void IIngestedDataDA.SaveTestData(InProcessFeedMsg msg)
         {
-            ConsoleNTraceHelpers.DisplayInfoToConsoleNTrace(m_ThisName + ".SaveTestData(): Entered:");
+            Debug.Assert(msg != null);
+            string displayMsg = string.Format("{0}.SaveTestData(): Entered:\n", m_ThisName);
+            //ConsoleNTraceHelpers.DisplayInfoToConsoleNTrace(displayMsg);
+            
             m_FeedRepository.SaveTestData(msg);
         }
         #endregion

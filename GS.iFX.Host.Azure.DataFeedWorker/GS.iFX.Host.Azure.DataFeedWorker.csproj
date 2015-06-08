@@ -99,7 +99,7 @@
       <Name>GS.Contract.DataFeed</Name>
     </ProjectReference>
     <ProjectReference Include="..\GS.Manager.DataFeed\GS.Manager.DataFeed.csproj">
-      <Project>{8c080184-c5ac-4496-bed0-acf4d88ae913}</Project>
+      <Project>{8C080184-C5AC-4496-BED0-ACF4D88AE913}</Project>
       <Name>GS.Manager.DataFeed</Name>
     </ProjectReference>
   </ItemGroup>
