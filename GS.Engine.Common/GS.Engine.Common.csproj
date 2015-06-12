@@ -40,8 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAdminValidityEngine.cs" />
     <Compile Include="ValidityEngine.cs" />
-    <Compile Include="IValidityEngine.cs" />
+    <Compile Include="IFeedValidityEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +53,14 @@
     <ProjectReference Include="..\GS.DataAccess.Common\GS.DataAccess.Common.csproj">
       <Project>{1a028d48-41fc-4147-a937-62b204fead38}</Project>
       <Name>GS.DataAccess.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.iFX.Service\GS.iFX.Service.csproj">
+      <Project>{63463479-ec49-44ae-bcdf-db7938d8768e}</Project>
+      <Name>GS.iFX.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.iFX.TestUI\GS.iFX.TestUI.csproj">
+      <Project>{ae0eff26-91b5-4866-b6cf-e77400e6784d}</Project>
+      <Name>GS.iFX.TestUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

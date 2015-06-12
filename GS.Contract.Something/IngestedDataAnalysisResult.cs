@@ -1,5 +1,5 @@
 ﻿/*
-GS.Contract.DataFeed.DataFeedStatistics
+GS.Contract.Something.IngestedDataAnalysisResult
   
 Copyright 2015 George Stevens
 
@@ -16,22 +16,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using System;
 using System.Runtime.Serialization;
 
-namespace GS.Contract.DataFeed
+namespace GS.Contract.Something
 {
     [DataContract(Namespace = "GeorgeStevens/SoApps/5/15")]
-    public class DataFeedStatistics
+    public class IngestedDataAnalysisResult
     {
+        // This is wildly unrealistic, just to get a demo of the code skeleton working.
         [DataMember]
-        public string FeedComponentName { get; set; }
+        public string ResultPart1 { get; set; }
         [DataMember]
-        public DateTime StatsCollectionDateTime;
-        // TODO George 6-1-15.  This needs to be generalized to support more than queues.
-        [DataMember]
-        public long QueueLength { get; set; }
-        [DataMember]
-        public long DeadLetterQueueLength { get; set; }
+        public string ResultPart2 { get; set; }
     }
 }

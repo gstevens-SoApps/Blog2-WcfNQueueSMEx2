@@ -21,7 +21,6 @@ using GS.Contract.DataFeed;
 using GS.DataAccess.Common;
 using GS.iFX.TestUI;
 using GS.Manager.DataFeed;
-using ServiceModelEx;
 using ServiceModelEx.ServiceBus;
 using System;
 using ConstantsNEnums = GS.iFX.Common.ConstantsNEnums;
@@ -58,44 +57,25 @@ namespace GS.iFX.Host.DataFeedServiceHost
                                  ConstantsNEnums.IngestionQueueName);
             ConsoleNTraceHelpers.PauseTillUserPressesEnter();
             QueuedServiceBusHost queuedHost = null;
-            ServiceHost<DataFeedManager> feedAdminHost = null;
             try
             {
                 Uri sbBaseAddr = new Uri("sb://AzExploreSbNS.servicebus.windows.net/");
                 queuedHost = new QueuedServiceBusHost(typeof(DataFeedManager), false, sbBaseAddr);
                 queuedHost.Open();
                 Console.WriteLine("{0}.Main():  QueuedServiceBusHost opened OK.  Working.....", m_ThisName);
-
-                Uri tcpBaseAddr = new Uri("net.tcp://localhost:8000/");
-                feedAdminHost = new ServiceHost<DataFeedManager>(tcpBaseAddr);
-                // When a non-queued endpoint is defined in the App.config for a service that
-                // is hosted in the QueuedServiceBusHost, this host will try to open that endpoint too.
-                // This will cause a timeout exception when it tries to verify the queue (which does
-                // not exist for a non-queued endpoint like TCP).  Therefore, one cannot
-                // use the app.config file to define non-queued endpoints in this situation.
-                // A workaround is the tcp endpoint for IFeedAdmin is defined in code instead, below.
-                // The client can, however, define the tcp endpoint in their app.config file.
-
-                // Transport security is the default, but a required arg to set Reliable = true.
-                NetTcpBinding tcpBinding = new NetTcpBinding(SecurityMode.Transport, true);
-                tcpBinding.TransactionFlow = true;
-                feedAdminHost.AddServiceEndpoint(typeof(IFeedAdmin), tcpBinding, "DataFeedManager");
-                feedAdminHost.Open();
-                Console.WriteLine("{0}.Main():  FeedAdmin Host opened OK.", m_ThisName);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("{0}.Main():  host.Open() Threw exception!\n     {1}", m_ThisName, ex.ToString());
+                Console.WriteLine("{0}.Main():  host.Open() Threw exception!\n     {1}", m_ThisName, ex);
             }
             
             Console.WriteLine("\n{0}.Main():  Press ENTER to EXIT.", m_ThisName);
             Console.ReadLine();
-            CloseOrAbortHosts(queuedHost, feedAdminHost);
+            CloseOrAbortHosts(queuedHost);
             Console.WriteLine("\n{0}.Main(): Exiting......", m_ThisName);
         }
 
-        private static void CloseOrAbortHosts(QueuedServiceBusHost queuedHost, 
-                                              ServiceHost<DataFeedManager> feedAdminHost)
+        private static void CloseOrAbortHosts(QueuedServiceBusHost queuedHost)
         {
             if (queuedHost != null)
             {
@@ -106,17 +86,6 @@ namespace GS.iFX.Host.DataFeedServiceHost
                 else
                 {
                     queuedHost.Abort();
-                }
-            }
-            if (feedAdminHost != null)
-            {
-                if (feedAdminHost.State != CommunicationState.Faulted)
-                {
-                    feedAdminHost.Close();
-                }
-                else
-                {
-                    feedAdminHost.Abort();
                 }
             }
         }

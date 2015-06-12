@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeed.InProcessFeedMsg
+GS.DataAccess.Common.InProcessFeedMsg
   
 Copyright 2015 George Stevens
 

@@ -35,7 +35,7 @@ namespace GS.Test.Client.DataSourceSimulator
         public static void Main(string[] args)
         {
             Console.Title = m_ThisName;
-            Console.WriteLine("{0}.Main(): Press <ENTER> to enqueue one", m_ThisName);
+            Console.WriteLine("{0}.Main(): Press <ENTER> to ENQUEUE one", m_ThisName);
             Console.WriteLine("  test message to SB queue '{0}' via WCF NetMessagingBinding",
                                ConstantsNEnums.IngestionQueueName);
             InitSourceIds(args);
@@ -46,24 +46,6 @@ namespace GS.Test.Client.DataSourceSimulator
                 if (userInput == "x")
                 {
                     break;
-                }
-                if (userInput == "s")
-                {
-                    try
-                    {
-                        Console.WriteLine("{0}.Main(): Getting queue statistics..", m_ThisName);
-                        DataFeedStatistics stats = PresentQueueStatistics(ConstantsNEnums.IngestionQueueName);
-                        string statMsg = string.Format("{0}.Main(): Queue statistics..", m_ThisName);
-                        Console.WriteLine(statMsg);
-                        statMsg = string.Format("   queueName={0}, queueLength={1},\n   deadLetterQueueLength={2}, statsTime={3}",
-                                                    stats.FeedComponentName, stats.QueueLength,
-                                                    stats.DeadLetterQueueLength, stats.StatsCollectionDateTime);
-                        Console.WriteLine(statMsg);
-                    }
-                    catch (Exception ex)
-                    {
-                       Console.WriteLine("{0}.Main(): PresentQueueStatistics() proxy threw exception\n {1}.", m_ThisName, ex);
-                    }
                 }
                 else
                 {
@@ -128,27 +110,9 @@ namespace GS.Test.Client.DataSourceSimulator
 
         private static string PauseTillUserPressesEnter_StatisticsOnS_ExitOnX()
         {
-            Console.WriteLine("Press <ENTER> to continue, OR enter 's'<ENTER> for stats, OR enter 'x'<ENTER> to EXIT....");
+            Console.WriteLine("Press <ENTER> to ENQUEUE an item, OR enter 'x'<ENTER> to EXIT....");
             string userInput = Console.ReadLine();
             return userInput;
-        }
-   
-        private static DataFeedStatistics PresentQueueStatistics(string queueName)
-        {
-            DataFeedStatistics stats = null;
-            DataFeedAdminClient proxy = new DataFeedAdminClient("feedAdmin");
-            try
-            {
-                stats = proxy.PresentFeedComponentInfo(queueName);
-                proxy.Close();
-                Console.WriteLine("{0}.PresentQueueStatistics(): Test message enqueued Ok.", m_ThisName);
-            }
-            catch (Exception ex)
-            {
-                ConsoleNTraceHelpers.DisplayExToConsoleNTrace(m_ThisName + ".PresentQueueStatistics(): ", ex);
-                proxy.Abort();
-            }
-            return stats;
         }
     }
 }

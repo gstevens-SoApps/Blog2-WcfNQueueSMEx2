@@ -1,5 +1,5 @@
 ﻿/*
-GS.Proxy.DataFeed.DataFeedAdminClient
+GS.Proxy.Admin.FeedAdminClient
   
 Copyright 2015 George Stevens
 
@@ -16,17 +16,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using GS.Contract.DataFeed;
+using GS.Contract.Admin;
 using System;
 using System.ServiceModel;
 
-namespace GS.Proxy.DataFeed
+namespace GS.Proxy.Admin
 {
-    public class DataFeedAdminClient : ClientBase<IFeedAdmin>, IFeedAdmin
+    public class FeedAdminClient : ClientBase<IFeedAdmin>, IFeedAdmin
     {
-        public DataFeedAdminClient(string endpointName)
+        public FeedAdminClient(string endpointName)
             : base(endpointName)
-        {}
+        { }
 
         public DataFeedStatistics PresentFeedComponentInfo(string componentName)
         {

@@ -81,6 +81,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GS.Contract.Admin\GS.Contract.Admin.csproj">
+      <Project>{2dbdf898-88c4-4606-8dcf-365515d8361c}</Project>
+      <Name>GS.Contract.Admin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GS.Contract.DataFeed\GS.Contract.DataFeed.csproj">
       <Project>{c541ac0c-dcca-4ef0-9978-f976660dc246}</Project>
       <Name>GS.Contract.DataFeed</Name>
@@ -92,6 +96,10 @@
     <ProjectReference Include="..\GS.iFX.TestUI\GS.iFX.TestUI.csproj">
       <Project>{ae0eff26-91b5-4866-b6cf-e77400e6784d}</Project>
       <Name>GS.iFX.TestUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.Proxy.Admin\GS.Proxy.Admin.csproj">
+      <Project>{45017344-0702-4bd6-b542-c4990b76187c}</Project>
+      <Name>GS.Proxy.Admin</Name>
     </ProjectReference>
     <ProjectReference Include="..\GS.Proxy.DataFeed\GS.Proxy.DataFeed.csproj">
       <Project>{c0b24790-49bc-4c00-932e-78c8849973b6}</Project>

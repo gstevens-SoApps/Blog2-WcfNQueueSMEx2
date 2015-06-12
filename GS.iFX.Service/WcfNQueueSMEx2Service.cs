@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeedAdmin.IFeedAdminDA
+GS.iFX.Service.ValidityEngine.WcfNQueueSMEx2Service
   
 Copyright 2015 George Stevens
 
@@ -16,17 +16,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using ServiceModelEx;
 using System.ServiceModel;
-using GS.Contract.DataFeed;
 
-namespace GS.DataAccess.DataFeedAdmin
+namespace GS.iFX.Service
 {
-    [ServiceContract(Namespace = "GeorgeStevens/SoApps/5/15")]
-    public interface IFeedAdminDA
+    // Classes implementing Engine and DA services can inherit from this so they uniformly set
+    // the standard attributes.
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, UseSynchronizationContext = false)]
+    [SecurityBehavior(ServiceSecurity.Intranet)]
+    //[ErrorHandlerBehavior] // Save this ServiceModelEx productivity feature for later.
+    public class WcfNQueueSMEx2Service
     {
-        [OperationContract]
-        long GetQueueLength(string queueName);
-        [OperationContract]
-        DataFeedStatistics GetFeedStatistics(string queueName);
     }
 }
+
+

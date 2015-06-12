@@ -1,5 +1,5 @@
 ﻿/*
-GS.Engine.Common.IValidityEngine
+GS.DataAccess.FeedAdmin.IFeedAdminRepository
   
 Copyright 2015 George Stevens
 
@@ -16,20 +16,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using GS.Contract.DataFeed;
-using GS.DataAccess.Common;
-using System;
-using System.ServiceModel;
+using GS.Contract.Admin;
 
-namespace GS.Engine.Common
+namespace GS.DataAccess.FeedAdmin
 {
-    [ServiceContract(Namespace = "GeorgeStevens/SoApps/5/15")]
-    public interface IValidityEngine
-    {
-        [OperationContract]
-        InProcessFeedMsg CheckTestMessageValidity(TestMessage msg, DateTime receivedDateTime);
+    // Please see the comments in FeedAdminDA for the purpose
+    // of this interface.
 
-        // In a production app there would me more validity checks.  Perhaps one for
-        // each service operation to check the validity of its arguments.  And even more.
+    public interface IFeedAdminRepos
+    {
+        long GetQueueLength(string queueName);
+        DataFeedStatistics GetFeedStatistics(string queueName);
     }
 }

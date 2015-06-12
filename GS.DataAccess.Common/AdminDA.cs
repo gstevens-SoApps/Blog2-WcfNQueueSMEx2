@@ -17,23 +17,24 @@ limitations under the License.
 */
 
 using System.Diagnostics;
-using GS.Contract.DataFeed;
+using GS.Contract.Admin;
+using GS.DataAccess.FeedAdmin;
+using GS.iFX.Service;
 
-namespace GS.DataAccess.DataFeedAdmin
+namespace GS.DataAccess.Common
 {
-    public class FeedAdminDA : IFeedAdminDA
+    public class AdminDA : WcfNQueueSMEx2Service, IFeedAdminDA
     {
-        private IFeedAdminRepository m_DataFeedAdminRepository;
+        private IFeedAdminRepos m_FeedAdminRepository;
 
-        public FeedAdminDA()
+        public AdminDA()
         {
-
             // The purpose for adding the indirection of a repository is to
             // decouple the DataAccessor from the specific type of data base
             // or service api that provides the data.  With the decoupling
             // achieved by programming to the interface it is easy
             // to change service providers without many code changes.
-            m_DataFeedAdminRepository = new FeedAdminRepositoryAzSb();
+            m_FeedAdminRepository = new FeedAdminRepositoryAzSb();
         }
 
         #region IFeedAdminDA Members
@@ -41,13 +42,13 @@ namespace GS.DataAccess.DataFeedAdmin
         long IFeedAdminDA.GetQueueLength(string queueName)
         {
             Debug.Assert(!string.IsNullOrEmpty(queueName));
-            return m_DataFeedAdminRepository.GetQueueLength(queueName);
+            return m_FeedAdminRepository.GetQueueLength(queueName);
         }
 
         DataFeedStatistics IFeedAdminDA.GetFeedStatistics(string queueName)
         {
             Debug.Assert(!string.IsNullOrEmpty(queueName));
-            DataFeedStatistics stats = m_DataFeedAdminRepository.GetFeedStatistics(queueName);
+            DataFeedStatistics stats = m_FeedAdminRepository.GetFeedStatistics(queueName);
             return stats;
         }
         #endregion

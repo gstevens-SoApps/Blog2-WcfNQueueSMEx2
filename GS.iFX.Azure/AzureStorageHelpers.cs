@@ -47,6 +47,7 @@ namespace GS.iFX.Azure
 
         public static CloudStorageAccount GetCloudStorageAccount()
         {
+            // TODO 6-12-15 George.  Make this string a constant.
             // The app.config file resides in the service host of the service calling this.
             string connString = ConfigurationManager.AppSettings["StorageConnectionString"];
             Debug.Assert(!string.IsNullOrEmpty(connString));

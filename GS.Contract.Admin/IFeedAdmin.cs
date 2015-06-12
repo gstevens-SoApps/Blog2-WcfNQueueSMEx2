@@ -1,5 +1,5 @@
 ﻿/*
-GS.Contract.DataFeed.IFeedAdmin
+GS.Contract.Admin.IFeedAdmin
   
 Copyright 2015 George Stevens
 
@@ -17,7 +17,7 @@ limitations under the License.
 */
 using System.ServiceModel;
 
-namespace GS.Contract.DataFeed
+namespace GS.Contract.Admin
 {
     [ServiceContract(Namespace = "GeorgeStevens/SoApps/6/15")]
     public interface IFeedAdmin
@@ -26,16 +26,17 @@ namespace GS.Contract.DataFeed
         DataFeedStatistics PresentFeedComponentInfo(string componentName);
 
         // George 6-1-15
-        // There are plenty of potential admin operations.
+        // There are plenty of potential admin operations for Data Feeds.
         // * Add and delete data feed components -- queues, topics, event hubs, etc.
         // * Change the permissions and/or the Shared Access Signatures of feed components.
         // * Look at performance statistics beside queue length, like number of items
         //   passing through per second, day, hour, etc.
-        // Etc.
-        // The key idea is the admin "facet" is completely different from the
-        // data feed "facet" of the IDataFeeds interface (concerned only with ingesting
-        // the data".  Thus, keep these concerns separate via interfaces.  Then
-        // one can separately choose what manager implements these interfaces.  This
+        // 
+        // The key idea is the data feed admin "facet" is completely different from the
+        // other admin "facets" for this entire system, like perhaps user permissions.
+        // Thus, keep these concerns separate via interfaces.  Then
+        // one can separately choose what manager implements these interfaces, perhaps
+        // a single manager implements several of them at once.  This
         // allows for cost effective composibility and an agile code base.
     }
 }

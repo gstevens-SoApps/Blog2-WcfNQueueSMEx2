@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeed.IFeedReposository
+GS.Engine.Something.ISomeDataAnalysisEngine
   
 Copyright 2015 George Stevens
 
@@ -15,10 +15,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-namespace GS.DataAccess.Common
+
+using GS.Contract.Something;
+using System.ServiceModel;
+
+namespace GS.Engine.Something
 {
-    public interface IFeedReposository
+    [ServiceContract(Namespace = "GeorgeStevens/SoApps/5/15")]
+    public interface ISomeDataAnalysisEngine
     {
-        void SaveTestData(InProcessFeedMsg msg);
+        [OperationContract]
+        IngestedDataAnalysisResult DoIngestedDataAnalysis();
     }
 }

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC76BC3C-457E-4BF5-8109-52BB1C755C6E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GS.Test.Client.AdminNSomeTester</RootNamespace>
+    <AssemblyName>GS.Test.Client.AdminNSomeTester</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GS.Contract.Admin\GS.Contract.Admin.csproj">
+      <Project>{2dbdf898-88c4-4606-8dcf-365515d8361c}</Project>
+      <Name>GS.Contract.Admin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.Contract.Something\GS.Contract.Something.csproj">
+      <Project>{a3d1efcb-f38d-4144-8bac-09f9b10a6c02}</Project>
+      <Name>GS.Contract.Something</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.iFX.Common\GS.iFX.Common.csproj">
+      <Project>{541d40e8-6896-4e29-8375-2604e5679e77}</Project>
+      <Name>GS.iFX.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.iFX.TestUI\GS.iFX.TestUI.csproj">
+      <Project>{ae0eff26-91b5-4866-b6cf-e77400e6784d}</Project>
+      <Name>GS.iFX.TestUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.Proxy.Admin\GS.Proxy.Admin.csproj">
+      <Project>{45017344-0702-4bd6-b542-c4990b76187c}</Project>
+      <Name>GS.Proxy.Admin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.Proxy.Something\GS.Proxy.Something.csproj">
+      <Project>{d1833c76-57c5-4eaa-9b4a-e29376b40b0e}</Project>
+      <Name>GS.Proxy.Something</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

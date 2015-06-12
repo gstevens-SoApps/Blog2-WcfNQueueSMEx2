@@ -18,7 +18,7 @@ limitations under the License.
 
 using GS.Contract.DataFeed;
 using GS.DataAccess.Common;
-using GS.DataAccess.DataFeedAdmin;
+using GS.DataAccess.FeedAdmin;
 using GS.Engine.Common;
 using GS.iFX.TestUI;
 using ServiceModelEx;
@@ -27,12 +27,16 @@ using System.Diagnostics;
 
 namespace GS.Manager.DataFeed
 {
+    // This is not an instance per call service since all the NetMessagingBinding examples use
+    // a sessionful service, which is the default.  However, an instance-per-call service is
+    // the equivalent in the case of queued situations (with both MSMQ and Service Bus Queues).
+    // See "Programming WCF Services", 3rd edition, by Juval Lowy -- the MSMQ section -- for more.
     [GenericResolverBehavior]
-    public class DataFeedManager : IDataFeeds, IFeedAdmin
+    public class DataFeedManager : IDataFeeds
     {
-        private string m_ThisName = "DataFeedsManager";
+        private string m_ThisName = "DataFeedManager";
 
-        #region IDataFeeds Members
+        #region IDataFeed Members
 
         // Note how the DataFeedManager service composes other services. The Engine and DataAccessor
         // services are hosted and run "in process" to this DataFeedManager service via
@@ -49,8 +53,8 @@ namespace GS.Manager.DataFeed
             
             // Check validity.
             InProcessFeedMsg checkedMsg = null;
-            IValidityEngine validityEngProxy = InProcFactory.CreateInstance<ValidityEngine, IValidityEngine>();
-            checkedMsg = validityEngProxy.CheckTestMessageValidity(msg, msgReceivedTime);
+            IFeedValidityEngine validityEngProxy = InProcFactory.CreateInstance<ValidityEngine, IFeedValidityEngine>();
+            checkedMsg = validityEngProxy.IsTestMessageValid(msg, msgReceivedTime);
             InProcFactory.CloseProxy(validityEngProxy);
 
             Debug.Assert(checkedMsg != null);
@@ -74,7 +78,7 @@ namespace GS.Manager.DataFeed
         private static void DisplayMsgAndQueueLength(TestMessage msg, InProcessFeedMsg checkedMsg)
         {
             // For test client only. 
-            IFeedAdminDA feedAdminDaProxy = InProcFactory.CreateInstance<FeedAdminDA, IFeedAdminDA>();
+            IFeedAdminDA feedAdminDaProxy = InProcFactory.CreateInstance<AdminDA, IFeedAdminDA>();
             long queueLength = feedAdminDaProxy.GetQueueLength(iFX.Common.ConstantsNEnums.IngestionQueueName);
             InProcFactory.CloseProxy(feedAdminDaProxy);
             checkedMsg.QueueLength = queueLength;
@@ -93,19 +97,6 @@ namespace GS.Manager.DataFeed
                                 m_ThisName, checkedMsg.ErrorMessage, checkedMsg.MessageReceivedDateTime);
             Trace.TraceError(errMsg);
             Console.WriteLine(errMsg);
-        }
-        #endregion
-
-        #region IFeedAdmin Members
-
-        DataFeedStatistics IFeedAdmin.PresentFeedComponentInfo(string componentName)
-        {
-            //ConsoleNTraceHelpers.DisplayInfoToConsoleNTrace("\n" + m_ThisName + ".PresentFeedComponentInfo(): Entered:");
-
-            IFeedAdminDA feedAdminDaProxy = InProcFactory.CreateInstance<FeedAdminDA, IFeedAdminDA>();
-            DataFeedStatistics stats = feedAdminDaProxy.GetFeedStatistics(componentName);
-            InProcFactory.CloseProxy(feedAdminDaProxy);
-            return stats;
         }
         #endregion
     }

@@ -69,9 +69,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminDA.cs" />
     <Compile Include="ConstantsNEnums.cs" />
-    <Compile Include="FeedReposositoryAzStor.cs" />
-    <Compile Include="IFeedReposository.cs" />
+    <Compile Include="IngestedReposAzStor.cs" />
+    <Compile Include="IIngestedRepos.cs" />
     <Compile Include="IIngestedDataDA.cs" />
     <Compile Include="IngestedDataDA.cs" />
     <Compile Include="InProcessFeedMsg.cs" />
@@ -83,13 +84,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GS.Contract.Admin\GS.Contract.Admin.csproj">
+      <Project>{2dbdf898-88c4-4606-8dcf-365515d8361c}</Project>
+      <Name>GS.Contract.Admin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GS.Contract.DataFeed\GS.Contract.DataFeed.csproj">
       <Project>{c541ac0c-dcca-4ef0-9978-f976660dc246}</Project>
       <Name>GS.Contract.DataFeed</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GS.DataAccess.FeedAdmin\GS.DataAccess.FeedAdmin.csproj">
+      <Project>{380d1dd6-d0f9-4892-9b03-6829abc2084f}</Project>
+      <Name>GS.DataAccess.FeedAdmin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GS.iFX.Azure\GS.iFX.Azure.csproj">
       <Project>{527f9852-81f8-4b53-a09f-0e26e26c2aca}</Project>
       <Name>GS.iFX.Azure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.iFX.Service\GS.iFX.Service.csproj">
+      <Project>{63463479-ec49-44ae-bcdf-db7938d8768e}</Project>
+      <Name>GS.iFX.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\GS.iFX.TestUI\GS.iFX.TestUI.csproj">
       <Project>{ae0eff26-91b5-4866-b6cf-e77400e6784d}</Project>

@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeed.ConstantsNEnums
+GS.DataAccess.Common.ConstantsNEnums
   
 Copyright 2015 George Stevens
 
@@ -30,9 +30,6 @@ namespace GS.DataAccess.Common
         
         // Constants and Enums for this Data Accessor
         public const string TestMessageTableName = "TestMessages";
-        //public const string TestMessageTableName = "TestMessagesNew100It";
-        //public const string TestMessageTableName = "TestMessagesNew1000It";
-        //public const string TestMessageTableName = "TestMessagesNew10It";
         //public const string TestMessageTableName = "TestMessagesJunk";
     }
 }

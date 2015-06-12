@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeed.TestMessageEntity
+GS.DataAccess.Common.TestMessageEntity
   
 Copyright 2015 George Stevens
 

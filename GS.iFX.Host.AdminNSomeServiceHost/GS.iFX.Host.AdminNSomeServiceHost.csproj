@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{380D1DD6-D0F9-4892-9B03-6829ABC2084F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{0403ED13-877A-4C34-AC6D-8426935780E2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GS.DataAccess.DataFeedAdmin</RootNamespace>
-    <AssemblyName>GS.DataAccess.DataFeedAdmin</AssemblyName>
+    <RootNamespace>GS.iFX.Host.AdminNSomeServiceHost</RootNamespace>
+    <AssemblyName>GS.iFX.Host.AdminNSomeServiceHost</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,17 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ServiceBus, Version=2.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAzure.ServiceBus.2.6.7\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,29 +42,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FeedAdminDA.cs" />
-    <Compile Include="FeedAdminRepositoryAzSb.cs" />
-    <Compile Include="IFeedAdminDA.cs" />
-    <Compile Include="IFeedAdminRepository.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GS.Contract.DataFeed\GS.Contract.DataFeed.csproj">
-      <Project>{c541ac0c-dcca-4ef0-9978-f976660dc246}</Project>
-      <Name>GS.Contract.DataFeed</Name>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GS.Contract.Admin\GS.Contract.Admin.csproj">
+      <Project>{2dbdf898-88c4-4606-8dcf-365515d8361c}</Project>
+      <Name>GS.Contract.Admin</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GS.iFX.Azure\GS.iFX.Azure.csproj">
-      <Project>{527f9852-81f8-4b53-a09f-0e26e26c2aca}</Project>
-      <Name>GS.iFX.Azure</Name>
+    <ProjectReference Include="..\GS.Contract.Something\GS.Contract.Something.csproj">
+      <Project>{a3d1efcb-f38d-4144-8bac-09f9b10a6c02}</Project>
+      <Name>GS.Contract.Something</Name>
     </ProjectReference>
     <ProjectReference Include="..\GS.iFX.TestUI\GS.iFX.TestUI.csproj">
       <Project>{ae0eff26-91b5-4866-b6cf-e77400e6784d}</Project>
       <Name>GS.iFX.TestUI</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <ProjectReference Include="..\GS.Manager.Admin\GS.Manager.Admin.csproj">
+      <Project>{79b709df-3ad2-4728-bfbb-74b646f33799}</Project>
+      <Name>GS.Manager.Admin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GS.Manager.Something\GS.Manager.Something.csproj">
+      <Project>{4ee97912-a4ee-48d8-a626-1245924bf29c}</Project>
+      <Name>GS.Manager.Something</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

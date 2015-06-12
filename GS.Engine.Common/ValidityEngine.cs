@@ -20,14 +20,20 @@ using GS.Contract.DataFeed;
 using GS.DataAccess.Common;
 using System;
 using System.Diagnostics;
+using GS.iFX.Service;
+using GS.iFX.TestUI;
 using ServiceModelEx;
 
 namespace GS.Engine.Common
 {
-    [GenericResolverBehavior] 
-    public class ValidityEngine : IValidityEngine
+    [GenericResolverBehavior]
+    public class ValidityEngine : WcfNQueueSMEx2Service, IFeedValidityEngine, IAdminValidityEngine
     {
-        InProcessFeedMsg IValidityEngine.CheckTestMessageValidity(TestMessage msg, DateTime receivedDateTime)
+        private string m_ThisName = "ValidityEngine";
+
+        #region IFeedValidityEngine Members
+
+        InProcessFeedMsg IFeedValidityEngine.IsTestMessageValid(TestMessage msg, DateTime receivedDateTime)
         {
             Debug.Assert(msg != null);
             Debug.Assert(receivedDateTime != DateTime.MinValue);
@@ -60,5 +66,21 @@ namespace GS.Engine.Common
             }
             return inProcessMsg;
         }
+        #endregion
+
+        #region IAdminValidityEngine Members
+
+        void IAdminValidityEngine.IsPresentFeedComponentInfoRequestValid(string componentName)
+        {
+            // In a real app one would likely have the FeedAdminDA check to see if the componentName
+            // was an active Feed Component in the system and throw an exception if not.  
+            // That's too much work for a demo.  This suffices to show the concept and test it.
+            if (string.IsNullOrEmpty(componentName))
+            {
+                ConsoleNTraceHelpers.DisplayInfoToConsoleNTrace(m_ThisName + ".IAdminValidityEngine.IsPresentFeedComponentInfoRequestValid():  arg was null or empty.");
+                throw new ArgumentNullException("componentName", "IAdminValidityEngine -- String was null or empty.");
+            }
+        }
+        #endregion
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeedAdmin.IFeedAdminRepository
+GS.DataAccess.FeedAdmin.IFeedAdminDA
   
 Copyright 2015 George Stevens
 
@@ -16,16 +16,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using GS.Contract.DataFeed;
+using System.ServiceModel;
+using GS.Contract.Admin;
 
-namespace GS.DataAccess.DataFeedAdmin
+namespace GS.DataAccess.FeedAdmin
 {
-    // Please see the comments in FeedAdminDA for the purpose
-    // of this interface.
-
-    public interface IFeedAdminRepository
+    [ServiceContract(Namespace = "GeorgeStevens/SoApps/5/15")]
+    public interface IFeedAdminDA
     {
+        [OperationContract]
         long GetQueueLength(string queueName);
+        [OperationContract]
         DataFeedStatistics GetFeedStatistics(string queueName);
     }
 }

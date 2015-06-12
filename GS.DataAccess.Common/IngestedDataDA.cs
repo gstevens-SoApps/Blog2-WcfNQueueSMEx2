@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeed.IngestedDataDA
+GS.DataAccess.Common.IngestedDataDA
   
 Copyright 2015 George Stevens
 
@@ -16,16 +16,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using System.Diagnostics;
-using GS.iFX.TestUI;
+using GS.iFX.Service;
 using ServiceModelEx;
+using System.Diagnostics;
 
 namespace GS.DataAccess.Common
 {
     [GenericResolverBehavior]
-    public class IngestedDataDA : IIngestedDataDA
+    public class IngestedDataDA : WcfNQueueSMEx2Service, IIngestedDataDA
     {
-        private IFeedReposository m_FeedRepository;
+        private IIngestedRepos m_FeedRepository;
         private string m_ThisName = "IngestedDataDA";
 
         public IngestedDataDA()
@@ -45,7 +45,7 @@ namespace GS.DataAccess.Common
             // Here's an article about abstract factories:
             // https://dotnetsilverlightprism.wordpress.com/2013/05/18/solid-abstract-factory-strategy-pattern-dependency-injection/
             
-            m_FeedRepository = new FeedReposositoryAzStor();
+            m_FeedRepository = new IngestedReposAzStor();
         }
 
         #region IIngestedDataDA Members
@@ -57,6 +57,11 @@ namespace GS.DataAccess.Common
             //ConsoleNTraceHelpers.DisplayInfoToConsoleNTrace(displayMsg);
             
             m_FeedRepository.SaveTestData(msg);
+        }
+
+        string IIngestedDataDA.GetDummyDataForAnalysis()
+        {
+            return "This is the dummy ingested data for analysis.";
         }
         #endregion
     }

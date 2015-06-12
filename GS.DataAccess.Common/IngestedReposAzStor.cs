@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeed.FeedReposositoryAzStor 
+GS.DataAccess.Common.FeedReposositoryAzStor 
   
 Copyright 2015 George Stevens
 
@@ -25,11 +25,11 @@ using System.Diagnostics;
 
 namespace GS.DataAccess.Common
 {
-    public class FeedReposositoryAzStor : IFeedReposository
+    public class IngestedReposAzStor : IIngestedRepos
     {
-        private string m_ThisName = "FeedReposositoryAzStor";
+        private string m_ThisName = "IngestedReposositoryAzStor";
 
-        void IFeedReposository.SaveTestData(InProcessFeedMsg msg)
+        void IIngestedRepos.SaveTestData(InProcessFeedMsg msg)
         {
             TestDataEntity msgEntity = null;
             string moreExInfo = string.Empty;

@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeedAdmin.FeedAdminRepositoryAzSb
+GS.DataAccess.FeedAdmin.FeedAdminRepositoryAzSb
   
 Copyright 2015 George Stevens
 
@@ -16,23 +16,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using GS.Contract.DataFeed;
+using GS.Contract.Admin;
 using Microsoft.ServiceBus.Messaging;
 using System;
 using GS.iFX.TestUI;
 
-namespace GS.DataAccess.DataFeedAdmin
+namespace GS.DataAccess.FeedAdmin
 {
     // Please see the comments in FeedAdminDA for more about the purpose
     // of this class.
 
-    public class FeedAdminRepositoryAzSb : IFeedAdminRepository
+    public class FeedAdminRepositoryAzSb : IFeedAdminRepos
     {
         private string m_ThisName = "FeedAdminRepositoryAzSb";
 
         #region IFeedAdminRepository Members
 
-        long IFeedAdminRepository.GetQueueLength(string queueName)
+        long IFeedAdminRepos.GetQueueLength(string queueName)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace GS.DataAccess.DataFeedAdmin
             }
         }
 
-        DataFeedStatistics IFeedAdminRepository.GetFeedStatistics(string queueName)
+        DataFeedStatistics IFeedAdminRepos.GetFeedStatistics(string queueName)
         {
             try
             {

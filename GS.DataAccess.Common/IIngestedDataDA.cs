@@ -1,5 +1,5 @@
 ﻿/*
-GS.DataAccess.DataFeed.IIngestedDataDA
+GS.DataAccess.Common.IIngestedDataDA
   
 Copyright 2015 George Stevens
 
@@ -25,6 +25,8 @@ namespace GS.DataAccess.Common
     {
         [OperationContract]
         void SaveTestData(InProcessFeedMsg msg);
+        [OperationContract]
+        string GetDummyDataForAnalysis();
 
         // Other contracts will follow.  To query and delete TestData.  
         // To save, query, and delete data from messages other than TestMessages.
